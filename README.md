@@ -1,3 +1,7 @@
+# Project Data Structure Documentation
+
+[Google Doc Link](https://docs.google.com/document/d/1uvWWY987_gJg1OXiL2qzbbVc99odCfKINc-HOozHJ2A/edit)
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
