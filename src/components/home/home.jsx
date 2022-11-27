@@ -3,6 +3,8 @@ import db from "../../index";
 import {doc, setDoc} from "firebase/firestore";
 import remaining_cards from "../../shared/remaining_cards";
 
+import './home.css';
+
 const Home = () => {
 
     const textRef = useRef();
@@ -50,12 +52,14 @@ const Home = () => {
     }
 
     return (
-        <div className={`home`}>
-            <input type="text" ref={textRef} placeholder="Enter your name"/>
-            <button onClick={() => {
-                setupFirestore();
-            }}>Create a Game
-            </button>
+        <div className='home'>
+            <div className="create-game-div">
+                <input type="text" ref={textRef} placeholder="Enter your name"/>
+                <button onClick={() => {
+                    setupFirestore();
+                }}>Create a Game
+                </button>
+            </div>
         </div>
     )
 }
