@@ -102,39 +102,75 @@ const remaining_cards = [
     },
     {
         "suit": "diamonds",
-        "value": 2
+        "value": 2,
+        "position": [
+            [9,4],
+            [2,7]
+        ]
     },
     {
         "suit": "diamonds",
-        "value": 3
+        "value": 3,
+        "position": [
+            [3,7],
+            [9,3]
+        ]
     },
     {
         "suit": "diamonds",
-        "value": 4
+        "value": 4,
+        "position": [
+            [9,2],
+            [4,7]
+        ]
     },
     {
         "suit": "diamonds",
-        "value": 5
+        "value": 5,
+        "position": [
+            [9,1],
+            [5,7]
+        ]
     },
     {
         "suit": "diamonds",
-        "value": 6
+        "value": 6,
+        "position": [
+            [8,0],
+            [6,7]
+        ]
     },
     {
         "suit": "diamonds",
-        "value": 7
+        "value": 7,
+        "position": [
+            [7,7],
+            [7,0]
+        ]
     },
     {
         "suit": "diamonds",
-        "value": 8
+        "value": 8,
+        "position": [
+            [6,0],
+            [7,6]
+        ]
     },
     {
         "suit": "diamonds",
-        "value": 9
+        "value": 9,
+        "position": [
+            [5,0],
+            [7,5]
+        ]
     },
     {
         "suit": "diamonds",
-        "value": 10
+        "value": 10,
+        "position": [
+            [4,0],
+            [7,4]
+        ]
     },
     {
         "suit": "diamonds",
@@ -142,15 +178,27 @@ const remaining_cards = [
     },
     {
         "suit": "diamonds",
-        "value": "Q"
+        "value": "Q",
+        "position": [
+            [3,0],
+            [7,3]
+        ]
     },
     {
         "suit": "diamonds",
-        "value": "K"
+        "value": "K",
+        "position": [
+            [2,0],
+            [7,2]
+        ]
     },
     {
         "suit": "diamonds",
-        "value": "A"
+        "value": "A",
+        "position": [
+            [1,0],
+            [6,2]
+        ]
     },
     {
         "suit": "clubs",

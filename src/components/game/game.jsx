@@ -26,7 +26,7 @@ const Game = () => {
                                                         {
                                                             card.number ?
                                                                 <div className={`number-wrapper`}>
-                                                                    <span className={card.suit}>{card.number}</span>
+                                                                    <span className={card.suit}>{card.number}<br />{id +", "+id2}</span>
                                                                 </div>
                                                                 : card.image ?
                                                                     <img className={`face-card`} src={card.image}
