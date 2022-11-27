@@ -14,6 +14,8 @@ const JoinGame = () => {
 
     async function check_localStorage(newData) {
 
+        // TODO: If status is 1 and user ID is either 1 or 2, navigate to game screen.
+
         await setData(newData);
 
         const gameID = window.localStorage.getItem("gameID");
