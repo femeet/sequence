@@ -202,39 +202,75 @@ const remaining_cards = [
     },
     {
         "suit": "clubs",
-        "value": 2
+        "value": 2,
+        "position": [
+            [6,6],
+            [4,8]
+        ]
     },
     {
         "suit": "clubs",
-        "value": 3
+        "value": 3,
+        "position": [
+            [5,6],
+            [3,8]
+        ]
     },
     {
         "suit": "clubs",
-        "value": 4
+        "value": 4,
+        "position": [
+            [4,6],
+            [2,8]
+        ]
     },
     {
         "suit": "clubs",
-        "value": 5
+        "value": 5,
+        "position": [
+            [3,6],
+            [1,8]
+        ]
     },
     {
         "suit": "clubs",
-        "value": 6
+        "value": 6,
+        "position": [
+            [2,6],
+            [0,8]
+        ]
     },
     {
         "suit": "clubs",
-        "value": 7
+        "value": 7,
+        "position": [
+            [2,5],
+            [0,7]
+        ]
     },
     {
         "suit": "clubs",
-        "value": 8
+        "value": 8,
+        "position": [
+            [2,4],
+            [0,6]
+        ]
     },
     {
         "suit": "clubs",
-        "value": 9
+        "value": 9,
+        "position": [
+            [2,3],
+            [0,5]
+        ]
     },
     {
         "suit": "clubs",
-        "value": 10
+        "value": 10,
+        "position": [
+            [2,2],
+            [0,4]
+        ]
     },
     {
         "suit": "clubs",
@@ -242,15 +278,28 @@ const remaining_cards = [
     },
     {
         "suit": "clubs",
-        "value": "Q"
+        "value": "Q",
+        "position": [
+            [0,3],
+            [3,2]
+        ]
     },
     {
         "suit": "clubs",
         "value": "K"
+        ,
+        "position": [
+            [0,2],
+            [4,2]
+        ]
     },
     {
         "suit": "clubs",
-        "value": "A"
+        "value": "A",
+        "position": [
+            [0,1],
+            [5,2]
+        ]
     },
     {
         "suit": "spades",
