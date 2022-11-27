@@ -303,39 +303,75 @@ const remaining_cards = [
     },
     {
         "suit": "spades",
-        "value": 2
+        "value": 2,
+        "position": [
+            [6,1],
+            [1,9]
+        ]
     },
     {
         "suit": "spades",
-        "value": 3
+        "value": 3,
+        "position": [
+            [5,1],
+            [2,9]
+        ]
     },
     {
         "suit": "spades",
-        "value": 4
+        "value": 4,
+        "position": [
+            [4,1],
+            [3,9]
+        ]
     },
     {
         "suit": "spades",
-        "value": 5
+        "value": 5,
+        "position": [
+            [3,1],
+            [4,9]
+        ]
     },
     {
         "suit": "spades",
-        "value": 6
+        "value": 6,
+        "position": [
+            [2,1],
+            [5,9]
+        ]
     },
     {
         "suit": "spades",
-        "value": 7
+        "value": 7,
+        "position": [
+            [1,1],
+            [6,9]
+        ]
     },
     {
         "suit": "spades",
-        "value": 8
+        "value": 8,
+        "position": [
+            [1,2],
+            [7,9]
+        ]
     },
     {
         "suit": "spades",
-        "value": 9
+        "value": 9,
+        "position": [
+            [1,3],
+            [8,9]
+        ]
     },
     {
         "suit": "spades",
-        "value": 10
+        "value": 10,
+        "position": [
+            [9,8],
+            [1,4]
+        ]
     },
     {
         "suit": "spades",
@@ -343,14 +379,26 @@ const remaining_cards = [
     },
     {
         "suit": "spades",
-        "value": "Q"
+        "value": "Q",
+        "position": [
+            [9,7],
+            [1,5]
+        ]
     },
     {
         "suit": "spades",
-        "value": "K"
+        "value": "K",
+        "position": [
+            [9,6],
+            [1,6]
+        ]
     },
     {
         "suit": "spades",
-        "value": "A"
+        "value": "A",
+        "position": [
+            [9,5],
+            [1,7]
+        ]
     }
 ]
