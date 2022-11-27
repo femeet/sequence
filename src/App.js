@@ -30,11 +30,11 @@ class App extends Component {
                     value={{
                         board
                     }}
-                >
+                    >
                     <BrowserRouter>
                         <Routes>
-                            <Route path={appRoutes.home} element={<Home />} ></Route>
-                            <Route path={appRoutes.game} element={<Game />} ></Route>
+                            <Route path={appRoutes.home} element={<Home />}></Route>
+                            <Route path={appRoutes.game} element={<Game />}></Route>
                         </Routes>
                     </BrowserRouter>
                 </ControlContext.Provider>
