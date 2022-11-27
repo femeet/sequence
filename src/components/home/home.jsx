@@ -28,8 +28,8 @@ const Home = () => {
         newGameDoc['scoreMatrix'] = currentBoard;
         newGameDoc['status'] = 0;
 
-        newGameDoc['player1'] = {
-            "name": userName
+        newGameDoc['players'] = {
+            "1": userName
         }
 
         // newGameDoc['remaining_cards'] = [...remaining_cards, ...remaining_cards];

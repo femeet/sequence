@@ -7,6 +7,7 @@ import Game from "./components/game/game";
 import Home from "./components/home/home";
 import appRoutes from "./shared/appRoutes";
 import db from "./index";
+import JoinGame from "./components/join/joinGame";
 
 class App extends Component {
   
@@ -23,10 +24,10 @@ class App extends Component {
 
         // Runs when the component mounts. Similar to useEffect Hook, but for a Component style class.
 
-        db.collection("games").get().then(querySnapshot => {
-            console.log(querySnapshot.docs.map(doc => doc.id)); // doc.id gives the ID
-            // doc.data() returns the data.
-        })
+        // db.collection("games").get().then(querySnapshot => {
+        //     console.log(querySnapshot.docs.map(doc => doc.id)); // doc.id gives the ID
+        //     // doc.data() returns the data.
+        // })
 
     }
 
@@ -46,6 +47,7 @@ class App extends Component {
                         <Routes>
                             <Route path={appRoutes.home} element={<Home />}></Route>
                             <Route path={appRoutes.game} element={<Game />}></Route>
+                            <Route path={appRoutes.joinGame} element={<JoinGame />}></Route>
                         </Routes>
                     </BrowserRouter>
                 </ControlContext.Provider>
