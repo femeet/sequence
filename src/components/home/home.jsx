@@ -31,7 +31,7 @@ const Home = () => {
         newGameDoc['status'] = 0;
 
         newGameDoc['players'] = {
-            "1": userName
+            1: userName
         }
 
         // newGameDoc['remaining_cards'] = [...remaining_cards, ...remaining_cards];
@@ -49,7 +49,7 @@ const Home = () => {
         // Save game ID, and player number in the localstorage
         // TODO: Change this structure and combine it. (Like a dictionary)
         window.localStorage.setItem("gameID", gameID);
-        window.localStorage.setItem("playerID", "1");
+        window.localStorage.setItem("playerID", 1);
 
         // TODO: Go to game screen with Status 0 (To wait for other players)
         navigator(`/joinGame/${gameID}`)

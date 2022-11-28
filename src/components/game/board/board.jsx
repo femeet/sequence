@@ -1,17 +1,18 @@
 import './board.css';
-import {Board} from "../../../shared/board";
+import RedCoin from "../../../assets/images/red-coin.png";
+import BlueCoin from "../../../assets/images/blue-coin.png";
 
 const GameBoard = (props) => {
     return (
         <div className={`board-wrapper ${props.canplay ? `` : `no-play`}`}>
             {
-                Board.map((row, id) => {
+                props.board.map((row, id) => {
                     return (
                         <div key={id} className={`card-row`}>
                             {
                                 row.map((card, id2) => {
                                     return (
-                                        <div className={`card`} key={id + id2} onClick={() => props.play(id + 1, id2 + 1)}>
+                                        <div className={`card`} key={id + id2} onClick={() => props.play(id, id2)}>
                                             <div className={`content`}>
                                                 {
                                                     !card.image && !card.corner ?
@@ -29,6 +30,13 @@ const GameBoard = (props) => {
                                                         : card.image ?
                                                             <img className={`face-card`} src={card.image}
                                                                  alt={card.suit}/> : ''
+                                                }
+                                                {
+                                                    card.team && card.team !== 0 ?
+                                                        <div className={`coin`}>
+                                                            <img alt={`coin`} src={card.team === 1 ? RedCoin : BlueCoin} />
+                                                        </div>
+                                                    : ''
                                                 }
                                             </div>
                                         </div>

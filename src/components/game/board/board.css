@@ -85,3 +85,11 @@
 .card .content .number-wrapper .spade {
     color: #000;
 }
+
+.card .content .coin {
+    position: absolute;
+}
+
+.card .content .coin img {
+    width: 40px;
+}

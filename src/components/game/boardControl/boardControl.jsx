@@ -43,10 +43,11 @@ const BoardControl = (props) => {
                     </div>
                     <span className={`pending-cards`}>{props.remainingCards}</span>
                 </div>
-                <div className={`last-played`}>
-                    <div className={`deck`}>
-                        {/*<Card card={props.cards} />*/}
-                    </div>
+                <div className={`used-deck`}>
+                    <span className={`pending-cards`}>Last Card Played</span>
+                    {
+                        props.lastCard ? <Card card={props.lastCard} /> : ''
+                    }
                 </div>
             </div>
             
