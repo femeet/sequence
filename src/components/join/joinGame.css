@@ -1,0 +1,116 @@
+.jg-main {
+    width: 100vw;
+    height: 100vh;
+    background: #2c3e50;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.jg-wrapper-div {
+    width: 80vw;
+    height: 80vh;
+    background: white;
+    color: black;
+    border-radius: 25px;
+    display: inline-flex;
+    flex-wrap: wrap;
+    padding: 25px;
+    box-sizing: border-box;
+    align-items: center;
+    justify-content: center;
+}
+
+.jg-link-div {
+    width: 80vw;
+    box-sizing: border-box;
+    font-size: x-large;
+    font-weight: bold;
+}
+
+.jg-link {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-sizing: border-box;
+    padding: 10px;
+    border: 2px solid black;
+    border-radius: 12px;
+    margin-top: 10px;
+    font-size: medium;
+    font-weight: normal;
+    box-shadow: 0 0 5px gray;
+    color: #e74c3c;
+}
+
+.players-div {
+    width: 80vw;
+    display: flex;
+    gap: 25px;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.players-div > div {
+    flex: 1;
+    background: white;
+    box-sizing: border-box;
+    padding: 50px 25px;
+    border: 2px solid black;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 0 5px gray;
+}
+
+.start-game-btn {
+    width: 80vw;
+    box-sizing: border-box;
+    background: #27ae60;
+    border: 1px solid #2ecc71;
+    font-weight: bold;
+    font-size: larger;
+    border-radius: 12px;
+    padding: 20px;
+}
+
+.start-game-btn:disabled {
+    background: gray;
+    border: 1px solid darkgray;
+}
+
+.second-player-name-div {
+    width: 100%;
+    font-size: larger;
+    font-weight: bolder;
+    text-align: center;
+}
+
+.second-player-name-div > input {
+    width: 50%;
+    height: 40px;
+    border-radius: 10px;
+    border: 1px solid black;
+    margin-top: 20px;
+    text-align: center;
+    font-weight: bolder;
+    font-size: large;
+}
+
+.second-player-name-div > button {
+    width: 50%;
+    height: 40px;
+    border-radius: 10px;
+    margin-top: 10px;
+    text-align: center;
+    background: #27ae60;
+    border: 1px solid #2ecc71;
+    color: white;
+    font-weight: bolder;
+    font-size: large;
+}
+
+
+

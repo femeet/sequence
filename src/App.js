@@ -47,6 +47,7 @@ class App extends Component {
                         <Routes>
                             <Route path={appRoutes.home} element={<Home />}></Route>
                             <Route path={appRoutes.game} element={<Game />}></Route>
+                            <Route path={appRoutes.gameWithID} element={<Game />}></Route>
                             <Route path={appRoutes.joinGame} element={<JoinGame />}></Route>
                         </Routes>
                     </BrowserRouter>
