@@ -1,0 +1,83 @@
+.board-wrapper {
+    padding-top: 50px;
+    padding-left: 40px;
+    display: inline-block;
+}
+
+.card {
+    width: 5.9vw;
+    height: 8vh;
+    background: #fff;
+    border-radius: 5px;
+    margin: 2px 3px;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.card:hover {
+    box-shadow: 0 4px 10px 3px #ccc;
+}
+
+.card .content {
+    pointer-events: none;
+    position: absolute;
+    width: 5.9vw;
+    height: 8vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card .content .suit-wrapper .club {
+    background: url("../../../assets/images/club.png") no-repeat;
+}
+
+.card .content .suit-wrapper .heart {
+    background: url("../../../assets/images/heart.png") no-repeat;
+}
+
+.card .content .suit-wrapper .diamond {
+    background: url("../../../assets/images/diamond.png") no-repeat;
+}
+
+.card .content .suit-wrapper .spade {
+    background: url("../../../assets/images/spade.png") no-repeat;
+}
+
+.card .content .face-card {
+    width: 5vw;
+    height: 5.8vh;
+}
+
+.card .content .suit-wrapper .suit {
+    background-size: contain;
+    display: block;
+    width: 1vw;
+    height: 1vw;
+}
+
+.card .content .suit-wrapper .right {
+    position: absolute;
+    right: 10%;
+    top: 40%;
+}
+
+.card .content .suit-wrapper .left {
+    position: absolute;
+    left: 10%;
+    top: 40%;
+}
+
+.card .content .number-wrapper {
+    font-size: 3vh;
+}
+
+.card .content .number-wrapper .heart,
+.card .content .number-wrapper .diamond {
+    color: #DD1A1E;
+}
+
+.card .content .number-wrapper .club,
+.card .content .number-wrapper .spade {
+    color: #000;
+}
