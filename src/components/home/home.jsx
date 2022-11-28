@@ -3,9 +3,14 @@ import db from "../../index";
 import {doc, setDoc} from "firebase/firestore";
 import remaining_cards from "../../shared/remaining_cards";
 
+import './home.css';
+import {useNavigate} from "react-router-dom";
+
 const Home = () => {
 
     const textRef = useRef();
+
+    const navigator = useNavigate();
 
     async function setupFirestore() {
         const userName = textRef.current.value;
@@ -26,8 +31,8 @@ const Home = () => {
         newGameDoc['scoreMatrix'] = currentBoard;
         newGameDoc['status'] = 0;
 
-        newGameDoc['player1'] = {
-            "name": userName
+        newGameDoc['players'] = {
+            "1": userName
         }
 
         // newGameDoc['remaining_cards'] = [...remaining_cards, ...remaining_cards];
@@ -43,19 +48,23 @@ const Home = () => {
         await setDoc(doc(db, "games", gameID), newGameDoc);
 
         // Save game ID, and player number in the localstorage
+        // TODO: Change this structure and combine it. (Like a dictionary)
         window.localStorage.setItem("gameID", gameID);
         window.localStorage.setItem("playerID", "1");
 
         // TODO: Go to game screen with Status 0 (To wait for other players)
+        navigator(`/joinGame/${gameID}`)
     }
 
     return (
-        <div className={`home`}>
-            <input type="text" ref={textRef} placeholder="Enter your name"/>
-            <button onClick={() => {
-                setupFirestore();
-            }}>Create a Game
-            </button>
+        <div className='home'>
+            <div className="create-game-div">
+                <input type="text" ref={textRef} placeholder="Enter your name"/>
+                <button onClick={() => {
+                    setupFirestore();
+                }}>Create a Game
+                </button>
+            </div>
         </div>
     )
 }
