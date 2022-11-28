@@ -26,11 +26,12 @@ const JoinGame = () => {
         }
 
         // TODO: Allocate n cards to each player (update Firestore)
+        let n = 6;
         var tempData = {...data};
         var currentCards = {}
         for(let i = 1; i <= Object.keys(data["players"]).length; i ++) {
             currentCards[i.toString()] = []
-            for(let j = 0; j < 6; j++) {
+            for(let j = 0; j < n; j++) {
                 const randomInt = Math.floor(Math.random() * tempData['remainingCards'].length);
                 currentCards[i.toString()].push(tempData['remainingCards'][randomInt]);
                 tempData['remainingCards'].splice(randomInt, 1);
@@ -40,6 +41,12 @@ const JoinGame = () => {
 
         // Done: Change status of game to 1
         tempData["status"] = 1
+        tempData["currentPlayer"] = "1"
+        
+        tempData["score"] = {
+            "1": 0,
+            "2": 0
+        }
 
         // Done: Update Firebase
         await setDoc(doc(db, "games", id), tempData);
@@ -58,7 +65,7 @@ const JoinGame = () => {
         const gameID = window.localStorage.getItem("gameID");
         const playerID = window.localStorage.getItem("playerID");
 
-        if(gameID === id && data["status"] === 1 && playerID != null) {
+        if(gameID === id && newData["status"] === 1 && playerID != null) {
             navigator(`/game/${id}`)
         }
 

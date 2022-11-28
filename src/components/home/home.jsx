@@ -1,7 +1,7 @@
 import {useRef} from "react";
 import db from "../../index";
 import {doc, setDoc} from "firebase/firestore";
-import remaining_cards from "../../shared/remaining_cards";
+import {remaining_cards} from "../../shared/remaining_cards";
 
 import './home.css';
 import {useNavigate} from "react-router-dom";
@@ -9,7 +9,6 @@ import {useNavigate} from "react-router-dom";
 const Home = () => {
 
     const textRef = useRef();
-
     const navigator = useNavigate();
 
     async function setupFirestore() {
