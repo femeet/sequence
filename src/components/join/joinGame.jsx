@@ -58,7 +58,12 @@ const JoinGame = () => {
         const gameID = window.localStorage.getItem("gameID");
         const playerID = window.localStorage.getItem("playerID");
 
+        if(gameID === id && data["status"] === 1 && playerID != null) {
+            navigator(`/game/${id}`)
+        }
+
         if(gameID !== id) {
+            // TODO: Verify if this is right
             window.localStorage.clear();
         }
 
