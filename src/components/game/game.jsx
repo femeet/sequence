@@ -16,9 +16,9 @@ const Game = () => {
     const [lastCard, setLastCard] = useState(null);
     
     const canPlay = (row, col) => {
-        // TODO: check for jack, handle jacks case!
         for (const card of data.currentCards[myPlayerID]) {
-            
+    
+            // TODO: check for jack, handle jacks case!
             if (card.number === "J") continue;
             
             if (((card.position[0][0] === row && card.position[0][1] === col)
@@ -66,29 +66,21 @@ const Game = () => {
      * */
     const play = async (row, col) => {
     
-        console.log('card clicked: ' + row + ' ' + col);
-    
         let card = canPlay(row, col);
         if (!card) return;
-    
         let newData = {...data};
-    
-        // TODO: Update Current Board
+        
         newData.currentBoard = updateCurrentBoard(row, col);
     
         // TODO: Update Local Board
         updateLocalBoard(row, col); // is this required?
-    
-        // TODO: Replace played card with new card, Update Remaining Cards
+        
         let cardIndex = getCardIndex(card);
         const randomInt = Math.floor(Math.random() * data.remainingCards.length);
         newData.currentCards[myPlayerID][cardIndex] = data.remainingCards[randomInt];
         newData.remainingCards.splice(randomInt, 1); // removing new pop-ed card
         
-        // TODO: Update Last Card played
         newData.lastCardPlayed = card;
-        
-        // TODO: Update turn
         newData.currentPlayer = data.currentPlayer === 1 ? 2 : 1;
         
         // TODO: Check if score updated
