@@ -1,7 +1,7 @@
 import {useRef} from "react";
 import db from "../../index";
 import {doc, setDoc} from "firebase/firestore";
-import remaining_cards from "../../shared/remaining_cards";
+import {remaining_cards} from "../../shared/remaining_cards";
 
 import './home.css';
 import {useNavigate} from "react-router-dom";
@@ -9,7 +9,6 @@ import {useNavigate} from "react-router-dom";
 const Home = () => {
 
     const textRef = useRef();
-
     const navigator = useNavigate();
 
     async function setupFirestore() {
@@ -32,7 +31,7 @@ const Home = () => {
         newGameDoc['status'] = 0;
 
         newGameDoc['players'] = {
-            "1": userName
+            1: userName
         }
 
         // newGameDoc['remaining_cards'] = [...remaining_cards, ...remaining_cards];
@@ -50,7 +49,7 @@ const Home = () => {
         // Save game ID, and player number in the localstorage
         // TODO: Change this structure and combine it. (Like a dictionary)
         window.localStorage.setItem("gameID", gameID);
-        window.localStorage.setItem("playerID", "1");
+        window.localStorage.setItem("playerID", 1);
 
         // TODO: Go to game screen with Status 0 (To wait for other players)
         navigator(`/joinGame/${gameID}`)

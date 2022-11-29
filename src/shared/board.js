@@ -10,10 +10,23 @@ import QueenSpade from '../assets/images/queen-spade.png';
 
 import CornerImage from '../assets/images/corner.png';
 
+import Spade from '../assets/images/spade.png';
+import Club from '../assets/images/club.png';
+import Heart from '../assets/images/heart.png';
+import Diamond from '../assets/images/diamond.png';
+
+
 const diamond = "diamond";
 const spade = "spade";
 const club = "club";
 const heart = "heart";
+
+const Suits = {
+    spade: Spade,
+    club: Club,
+    heart: Heart,
+    diamond: Diamond
+}
 
 const Board = [
     [
@@ -630,4 +643,4 @@ const Board = [
     ]
 ]
 
-export default Board;
+export {Board, Suits};

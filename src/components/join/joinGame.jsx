@@ -12,7 +12,7 @@ const JoinGame = () => {
 
     const [player2Joined, setPlayer2Joined] = useState(false);
 
-    const [myPlayerID, setMyPlayerID] = useState("0");
+    const [myPlayerID, setMyPlayerID] = useState(0);
 
     const [startDisabled, setStartDisabled] = useState(true);
 
@@ -26,11 +26,12 @@ const JoinGame = () => {
         }
 
         // TODO: Allocate n cards to each player (update Firestore)
+        let n = 6;
         var tempData = {...data};
         var currentCards = {}
         for(let i = 1; i <= Object.keys(data["players"]).length; i ++) {
             currentCards[i.toString()] = []
-            for(let j = 0; j < 6; j++) {
+            for(let j = 0; j < n; j++) {
                 const randomInt = Math.floor(Math.random() * tempData['remainingCards'].length);
                 currentCards[i.toString()].push(tempData['remainingCards'][randomInt]);
                 tempData['remainingCards'].splice(randomInt, 1);
@@ -40,6 +41,12 @@ const JoinGame = () => {
 
         // Done: Change status of game to 1
         tempData["status"] = 1
+        tempData["currentPlayer"] = 1
+        
+        tempData["score"] = {
+            "1": 0,
+            "2": 0
+        }
 
         // Done: Update Firebase
         await setDoc(doc(db, "games", id), tempData);
@@ -56,9 +63,9 @@ const JoinGame = () => {
         await setData(newData);
 
         const gameID = window.localStorage.getItem("gameID");
-        const playerID = window.localStorage.getItem("playerID");
+        const playerID = parseInt(window.localStorage.getItem("playerID"));
 
-        if(gameID === id && data["status"] === 1 && playerID != null) {
+        if(gameID === id && newData["status"] === 1 && playerID != null) {
             navigator(`/game/${id}`)
         }
 
@@ -69,7 +76,7 @@ const JoinGame = () => {
 
         setMyPlayerID(playerID);
 
-        if (playerID === null && Object.keys(newData["players"]).length === 1) {
+        if (isNaN(playerID) && Object.keys(newData["players"]).length === 1) {
             setPlayer2Joined(true);
         }
 
@@ -80,9 +87,9 @@ const JoinGame = () => {
 
     async function addPlayer() {
         window.localStorage.setItem("gameID", id);
-        window.localStorage.setItem("playerID", "2");
+        window.localStorage.setItem("playerID", 2);
 
-        data["players"]["2"] = textRef.current.value;
+        data["players"][2] = textRef.current.value;
         await setDoc(doc(db, "games", id), data);
         setPlayer2Joined(false);
     }
@@ -117,14 +124,14 @@ const JoinGame = () => {
 
                 <div className="player1" style={{border: "2px solid red"}}>
                     <div style={{fontWeight: "bolder", width: "100%", fontSize: "x-large"}}>Player 1</div>
-                    {data["players"]["1"]}
-                    {myPlayerID === "1" && " (You)"}
+                    {data["players"][1]}
+                    {myPlayerID === 1 && " (You)"}
                 </div>
 
                 <div className="player1" style={{border: "2px solid blue"}}>
                     <div style={{fontWeight: "bolder", width: "100%", fontSize: "x-large"}}>Player 2</div>
-                    {Object.keys(data["players"]).length > 1 ? data["players"]["2"] : "Waiting..."}
-                    {myPlayerID === "2" && " (You)"}
+                    {Object.keys(data["players"]).length > 1 ? data["players"][2] : "Waiting..."}
+                    {myPlayerID === 2 && " (You)"}
                 </div>
 
             </div>

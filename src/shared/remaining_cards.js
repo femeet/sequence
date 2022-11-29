@@ -1,8 +1,43 @@
+import KingHeart from '../assets/images/cards/king-heart.png';
+import KingClub from '../assets/images/cards/king-club.png';
+import KingDiamond from '../assets/images/cards/king-diamond.png';
+import KingSpade from '../assets/images/cards/king-spade.png';
+
+import QueenHeart from '../assets/images/cards/queen-heart.png';
+import QueenClub from '../assets/images/cards/queen-club.png';
+import QueenDiamond from '../assets/images/cards/queen-diamond.png';
+import QueenSpade from '../assets/images/cards/queen-spade.png';
+
+import JackHeart from '../assets/images/cards/jack-heart.png';
+import JackClub from '../assets/images/cards/jack-club.png';
+import JackDiamond from '../assets/images/cards/jack-diamond.png';
+import JackSpade from '../assets/images/cards/jack-spade.png';
+
+const face_cards_image = {
+    "J": {
+        "club": JackClub,
+        "heart": JackHeart,
+        "diamond": JackDiamond,
+        "spade": JackSpade
+    },
+    "Q": {
+        "club": QueenClub,
+        "heart": QueenHeart,
+        "diamond": QueenDiamond,
+        "spade": QueenSpade
+    },
+    "K": {
+        "club": KingClub,
+        "heart": KingHeart,
+        "diamond": KingDiamond,
+        "spade": KingSpade
+    },
+}
 
 const remaining_cards = [
     {
-        "suit": "hearts",
-        "value": 2,
+        "suit": "heart",
+        "number": 2,
         "position": {
             "0": [
                 4,
@@ -15,8 +50,8 @@ const remaining_cards = [
         }
     },
     {
-        "suit": "hearts",
-        "value": 3,
+        "suit": "heart",
+        "number": 3,
         "position": {
             "0": [
                 5,
@@ -29,8 +64,8 @@ const remaining_cards = [
         }
     },
     {
-        "suit": "hearts",
-        "value": 4,
+        "suit": "heart",
+        "number": 4,
         "position": {
             "0": [
                 5,
@@ -43,8 +78,8 @@ const remaining_cards = [
         }
     },
     {
-        "suit": "hearts",
-        "value": 5,
+        "suit": "heart",
+        "number": 5,
         "position": {
             "0": [
                 4,
@@ -57,8 +92,8 @@ const remaining_cards = [
         }
     },
     {
-        "suit": "hearts",
-        "value": 6,
+        "suit": "heart",
+        "number": 6,
         "position": {
             "0": [
                 3,
@@ -71,8 +106,8 @@ const remaining_cards = [
         }
     },
     {
-        "suit": "hearts",
-        "value": 7,
+        "suit": "heart",
+        "number": 7,
         "position": {
             "0": [
                 3,
@@ -85,8 +120,8 @@ const remaining_cards = [
         }
     },
     {
-        "suit": "hearts",
-        "value": 8,
+        "suit": "heart",
+        "number": 8,
         "position": {
             "0": [
                 3,
@@ -99,8 +134,8 @@ const remaining_cards = [
         }
     },
     {
-        "suit": "hearts",
-        "value": 9,
+        "suit": "heart",
+        "number": 9,
         "position": {
             "0": [
                 4,
@@ -113,8 +148,8 @@ const remaining_cards = [
         }
     },
     {
-        "suit": "hearts",
-        "value": 10,
+        "suit": "heart",
+        "number": 10,
         "position": {
             "0": [
                 5,
@@ -127,12 +162,14 @@ const remaining_cards = [
         }
     },
     {
-        "suit": "hearts",
-        "value": "J"
+        "suit": "heart",
+        "number": "J",
+        image: true,
     },
     {
-        "suit": "hearts",
-        "value": "Q",
+        "suit": "heart",
+        "number": "Q",
+        image: true,
         "position": {
             "0": [
                 6,
@@ -145,8 +182,9 @@ const remaining_cards = [
         }
     },
     {
-        "suit": "hearts",
-        "value": "K",
+        "suit": "heart",
+        "number": "K",
+        image: true,
         "position": {
             "0": [
                 6,
@@ -159,8 +197,8 @@ const remaining_cards = [
         }
     },
     {
-        "suit": "hearts",
-        "value": "A",
+        "suit": "heart",
+        "number": "A",
         "position": {
             "0": [
                 6,
@@ -173,8 +211,8 @@ const remaining_cards = [
         }
     },
     {
-        "suit": "diamonds",
-        "value": 2,
+        "suit": "diamond",
+        "number": 2,
         "position": {
             "0": [
                 9,
@@ -187,8 +225,8 @@ const remaining_cards = [
         }
     },
     {
-        "suit": "diamonds",
-        "value": 3,
+        "suit": "diamond",
+        "number": 3,
         "position": {
             "0": [
                 3,
@@ -201,8 +239,8 @@ const remaining_cards = [
         }
     },
     {
-        "suit": "diamonds",
-        "value": 4,
+        "suit": "diamond",
+        "number": 4,
         "position": {
             "0": [
                 9,
@@ -215,8 +253,8 @@ const remaining_cards = [
         }
     },
     {
-        "suit": "diamonds",
-        "value": 5,
+        "suit": "diamond",
+        "number": 5,
         "position": {
             "0": [
                 9,
@@ -229,8 +267,8 @@ const remaining_cards = [
         }
     },
     {
-        "suit": "diamonds",
-        "value": 6,
+        "suit": "diamond",
+        "number": 6,
         "position": {
             "0": [
                 8,
@@ -243,8 +281,8 @@ const remaining_cards = [
         }
     },
     {
-        "suit": "diamonds",
-        "value": 7,
+        "suit": "diamond",
+        "number": 7,
         "position": {
             "0": [
                 7,
@@ -257,8 +295,8 @@ const remaining_cards = [
         }
     },
     {
-        "suit": "diamonds",
-        "value": 8,
+        "suit": "diamond",
+        "number": 8,
         "position": {
             "0": [
                 6,
@@ -271,8 +309,8 @@ const remaining_cards = [
         }
     },
     {
-        "suit": "diamonds",
-        "value": 9,
+        "suit": "diamond",
+        "number": 9,
         "position": {
             "0": [
                 5,
@@ -285,8 +323,8 @@ const remaining_cards = [
         }
     },
     {
-        "suit": "diamonds",
-        "value": 10,
+        "suit": "diamond",
+        "number": 10,
         "position": {
             "0": [
                 4,
@@ -299,12 +337,14 @@ const remaining_cards = [
         }
     },
     {
-        "suit": "diamonds",
-        "value": "J"
+        "suit": "diamond",
+        "number": "J",
+        image: true,
     },
     {
-        "suit": "diamonds",
-        "value": "Q",
+        "suit": "diamond",
+        "number": "Q",
+        image: true,
         "position": {
             "0": [
                 3,
@@ -317,8 +357,9 @@ const remaining_cards = [
         }
     },
     {
-        "suit": "diamonds",
-        "value": "K",
+        "suit": "diamond",
+        "number": "K",
+        image: true,
         "position": {
             "0": [
                 2,
@@ -331,8 +372,8 @@ const remaining_cards = [
         }
     },
     {
-        "suit": "diamonds",
-        "value": "A",
+        "suit": "diamond",
+        "number": "A",
         "position": {
             "0": [
                 1,
@@ -345,8 +386,8 @@ const remaining_cards = [
         }
     },
     {
-        "suit": "clubs",
-        "value": 2,
+        "suit": "club",
+        "number": 2,
         "position": {
             "0": [
                 6,
@@ -359,8 +400,8 @@ const remaining_cards = [
         }
     },
     {
-        "suit": "clubs",
-        "value": 3,
+        "suit": "club",
+        "number": 3,
         "position": {
             "0": [
                 5,
@@ -373,8 +414,8 @@ const remaining_cards = [
         }
     },
     {
-        "suit": "clubs",
-        "value": 4,
+        "suit": "club",
+        "number": 4,
         "position": {
             "0": [
                 4,
@@ -387,8 +428,8 @@ const remaining_cards = [
         }
     },
     {
-        "suit": "clubs",
-        "value": 5,
+        "suit": "club",
+        "number": 5,
         "position": {
             "0": [
                 3,
@@ -401,8 +442,8 @@ const remaining_cards = [
         }
     },
     {
-        "suit": "clubs",
-        "value": 6,
+        "suit": "club",
+        "number": 6,
         "position": {
             "0": [
                 2,
@@ -415,8 +456,8 @@ const remaining_cards = [
         }
     },
     {
-        "suit": "clubs",
-        "value": 7,
+        "suit": "club",
+        "number": 7,
         "position": {
             "0": [
                 2,
@@ -429,8 +470,8 @@ const remaining_cards = [
         }
     },
     {
-        "suit": "clubs",
-        "value": 8,
+        "suit": "club",
+        "number": 8,
         "position": {
             "0": [
                 2,
@@ -443,8 +484,8 @@ const remaining_cards = [
         }
     },
     {
-        "suit": "clubs",
-        "value": 9,
+        "suit": "club",
+        "number": 9,
         "position": {
             "0": [
                 2,
@@ -457,8 +498,8 @@ const remaining_cards = [
         }
     },
     {
-        "suit": "clubs",
-        "value": 10,
+        "suit": "club",
+        "number": 10,
         "position": {
             "0": [
                 2,
@@ -471,12 +512,14 @@ const remaining_cards = [
         }
     },
     {
-        "suit": "clubs",
-        "value": "J"
+        "suit": "club",
+        "number": "J",
+        image: true,
     },
     {
-        "suit": "clubs",
-        "value": "Q",
+        "suit": "club",
+        "number": "Q",
+        image: true,
         "position": {
             "0": [
                 0,
@@ -489,8 +532,9 @@ const remaining_cards = [
         }
     },
     {
-        "suit": "clubs",
-        "value": "K",
+        "suit": "club",
+        "number": "K",
+        image: true,
         "position": {
             "0": [
                 0,
@@ -503,8 +547,8 @@ const remaining_cards = [
         }
     },
     {
-        "suit": "clubs",
-        "value": "A",
+        "suit": "club",
+        "number": "A",
         "position": {
             "0": [
                 0,
@@ -517,8 +561,8 @@ const remaining_cards = [
         }
     },
     {
-        "suit": "spades",
-        "value": 2,
+        "suit": "spade",
+        "number": 2,
         "position": {
             "0": [
                 6,
@@ -531,8 +575,8 @@ const remaining_cards = [
         }
     },
     {
-        "suit": "spades",
-        "value": 3,
+        "suit": "spade",
+        "number": 3,
         "position": {
             "0": [
                 5,
@@ -545,8 +589,8 @@ const remaining_cards = [
         }
     },
     {
-        "suit": "spades",
-        "value": 4,
+        "suit": "spade",
+        "number": 4,
         "position": {
             "0": [
                 4,
@@ -559,8 +603,8 @@ const remaining_cards = [
         }
     },
     {
-        "suit": "spades",
-        "value": 5,
+        "suit": "spade",
+        "number": 5,
         "position": {
             "0": [
                 3,
@@ -573,8 +617,8 @@ const remaining_cards = [
         }
     },
     {
-        "suit": "spades",
-        "value": 6,
+        "suit": "spade",
+        "number": 6,
         "position": {
             "0": [
                 2,
@@ -587,8 +631,8 @@ const remaining_cards = [
         }
     },
     {
-        "suit": "spades",
-        "value": 7,
+        "suit": "spade",
+        "number": 7,
         "position": {
             "0": [
                 1,
@@ -601,8 +645,8 @@ const remaining_cards = [
         }
     },
     {
-        "suit": "spades",
-        "value": 8,
+        "suit": "spade",
+        "number": 8,
         "position": {
             "0": [
                 1,
@@ -615,8 +659,8 @@ const remaining_cards = [
         }
     },
     {
-        "suit": "spades",
-        "value": 9,
+        "suit": "spade",
+        "number": 9,
         "position": {
             "0": [
                 1,
@@ -629,8 +673,8 @@ const remaining_cards = [
         }
     },
     {
-        "suit": "spades",
-        "value": 10,
+        "suit": "spade",
+        "number": 10,
         "position": {
             "0": [
                 9,
@@ -643,12 +687,14 @@ const remaining_cards = [
         }
     },
     {
-        "suit": "spades",
-        "value": "J"
+        "suit": "spade",
+        "number": "J",
+        image: true,
     },
     {
-        "suit": "spades",
-        "value": "Q",
+        "suit": "spade",
+        "number": "Q",
+        image: true,
         "position": {
             "0": [
                 9,
@@ -661,8 +707,9 @@ const remaining_cards = [
         }
     },
     {
-        "suit": "spades",
-        "value": "K",
+        "suit": "spade",
+        "number": "K",
+        image: true,
         "position": {
             "0": [
                 9,
@@ -675,8 +722,8 @@ const remaining_cards = [
         }
     },
     {
-        "suit": "spades",
-        "value": "A",
+        "suit": "spade",
+        "number": "A",
         "position": {
             "0": [
                 9,
@@ -690,4 +737,4 @@ const remaining_cards = [
     }
 ]
 
-export default remaining_cards;
+export {remaining_cards, face_cards_image};
