@@ -27,6 +27,18 @@ const Home = () => {
         }
 
         newGameDoc['currentBoard'] = currentBoard;
+
+        currentBoard = {};
+        for (let i = 0; i < 10; i++) {
+            var temp = [];
+            for (let j = 0; j < 10; j++) {
+                temp.push({
+                    "scoreOfTeam": 0
+                });
+            }
+            currentBoard[i] = temp;
+        }
+
         newGameDoc['scoreMatrix'] = currentBoard;
         newGameDoc['status'] = 0;
 

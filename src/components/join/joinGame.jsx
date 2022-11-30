@@ -50,7 +50,7 @@ const JoinGame = () => {
 
         // Done: Update Firebase
         await setDoc(doc(db, "games", id), tempData);
-        alert("Firestore updated. Game Started.");
+        // alert("Firestore updated. Game Started.");
 
         // Done: Navigate to board page
         navigator(`/game/${id}`)

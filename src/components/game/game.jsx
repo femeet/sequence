@@ -6,6 +6,7 @@ import {doc, onSnapshot, setDoc} from "firebase/firestore";
 import db from "../../index";
 import {useParams} from "react-router-dom";
 import {Board} from "../../shared/board";
+import checkForScore from '../../gameLogic';
 
 const Game = () => {
     
@@ -49,6 +50,7 @@ const Game = () => {
         }
         setBoard(localBoard);
     }
+
     
     const getCardIndex = (card) => {
         for (let i = 0; i < data.currentCards[myPlayerID].length; i++) {
@@ -69,7 +71,7 @@ const Game = () => {
         let card = canPlay(row, col);
         if (!card) return;
         let newData = {...data};
-        
+
         newData.currentBoard = updateCurrentBoard(row, col);
     
         // TODO: Update Local Board
@@ -84,24 +86,43 @@ const Game = () => {
         newData.currentPlayer = data.currentPlayer === 1 ? 2 : 1;
         
         // TODO: Check if score updated
-        
+        let result = checkForScore(data, row, col, myPlayerID);
+        if(result) {
+            result.indexes.forEach(index => {
+
+                // TODO: Do not change for corners!!!
+
+                newData.scoreMatrix[index.x][index.y] = {
+                    "scoreOfTeam": myPlayerID,
+                    "direction": result.direction
+                }
+            })
+
+            newData.scoreMatrix[row][col] = {
+                "scoreOfTeam": myPlayerID,
+                "direction": result.direction
+            }
+
+            newData.score[myPlayerID] = newData.score[myPlayerID] + 1;
+        }
+
         await setDoc(doc(db, "games", id), newData);
     }
     
     async function initialCheck(newData) {
         await setData(newData);
-        const playerID = parseInt(window.localStorage.getItem("playerID"));
-        
         parseCurrentBoard(newData.currentBoard);
         setLastCard(newData.lastCardPlayed);
-        setMyPlayerID(playerID);
     }
     
     useEffect(() => {
         const unsubscribe = onSnapshot(doc(db, "games", id), (doc) => {
             initialCheck(doc.data()).then();
         });
-        
+
+        const playerID = parseInt(window.localStorage.getItem("playerID"));
+        setMyPlayerID(playerID);
+
         return () => unsubscribe()
     }, [])
     
