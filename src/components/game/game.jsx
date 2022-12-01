@@ -179,7 +179,7 @@ const Game = () => {
     }, [])
     
     return (
-        <div>
+        <div className={`main`}>
             {
                 myPlayerID && data ?
                     <div className={`game`}>
