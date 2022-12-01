@@ -11,15 +11,15 @@
 }
 
 .player-card {
-    width: 100px;
-    height: 140px;
-    margin-bottom: 15px;
+    width: 78px;
+    height: 100px;
     background: #fff;
     border-radius: 10px;
     display: flex;
     justify-content: center;
     align-items: center;
     cursor: pointer;
+    margin: 10px;
 }
 
 .player-card:hover {
@@ -27,11 +27,11 @@
 }
 
 .player-card .card-image {
-    width: 75px;
+    width: 53px;
 }
 
 .deck-wrapper .player-card {
-    margin-bottom: 0px;
+    margin-bottom: 0;
 }
 
 .control-wrapper .content-wrapper {
@@ -41,7 +41,7 @@
 }
 
 .control-wrapper .content-wrapper .number {
-    font-size: 26px;
+    font-size: 20px;
     color: #DD1A1E;
 }
 
@@ -52,18 +52,18 @@
 
 .control-wrapper .content-wrapper .top-left {
     position: absolute;
-    top: 5px;
-    left: 8px;
+    top: 3px;
+    left: 5px;
 }
 
 .control-wrapper .content-wrapper .bottom-right {
     position: absolute;
-    bottom: 5px;
-    right: 8px;
+    bottom: 3px;
+    right: 5px;
 }
 
 .control-wrapper .content-wrapper .suit {
-    width: 25px;
+    width: 20px;
 }
 
 .control-wrapper .content-wrapper .suit.top {
@@ -79,25 +79,25 @@
 }
 
 .deck-wrapper {
-    margin-top: 20px;
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
 
 .deck-wrapper .pending {
-    display: flex;
-    align-items: center;
+    margin-left: 10px;
 }
 
 .deck-wrapper .pending .pending-cards {
-    font-size: 26px;
-    margin-left: 15px;
+    font-size: 16px;
+    width: 80px;
+    height: 57px;
+    text-align: center;
 }
 
 .deck-wrapper .deck {
-    width: 100px;
-    height: 140px;
+    width: 78px;
+    height: 100px;
     background: #fff;
     border-radius: 10px;
     display: flex;
@@ -106,8 +106,8 @@
 }
 
 .deck-wrapper .deck img {
-    width: 80px;
-    height: 120px;
+    width: 64px;
+    height: 87px;
 }
 
 .deck-wrapper .used-deck {
@@ -115,36 +115,62 @@
     align-items: center;
 }
 
-.deck-wrapper .used-deck .pending-cards {
-    width: 75px;
-    text-align: center;
-    margin-right: 10px;
-}
-
 .score-wrapper {
-    min-width: 200px;
-    background: #fff;
-    border-radius: 10px;
-    margin-top: 30px;
-    padding: 20px;
-    font-size: 26px;
-}
-
-.score-wrapper .team,
-.score-wrapper .team .left {
     display: flex;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
+    margin-top: 20px;
 }
 
 .score-wrapper .team {
-    justify-content: space-between;
+    display: flex;
+    margin-bottom: 10px;
+    font-weight: 500;
 }
 
-.score-wrapper .team.team-1 {
+.score-wrapper .team .name {
+    width: 180px;
+    background: #DD1A1E;
+    border-radius: 10px;
+    padding: 10px;
+    color: #fff;
+    margin-right: 15px;
+    font-size: 17px;
+}
+
+.score-wrapper .team .score {
+    width: 40px;
+    background: #DD1A1E;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    font-size: 20px;
+}
+
+.score-wrapper .team.team-blue .name,
+.score-wrapper .team.team-blue .score {
+    background: #0000ff;
+}
+
+.control-wrapper .turn-span {
+    text-align: center;
     margin-bottom: 20px;
 }
 
-.score-wrapper .team img {
-    width: 50px;
-    margin-right: 20px;
+.control-wrapper .turn-span .turn {
+    margin: 0;
+    display: inline-block;
+    background: #27ae60;
+    color: #fff;
+    font-weight: 700;
+    padding: 10px;
+    border-radius: 10px;
+    opacity: 0.5;
+}
+
+.control-wrapper .turn-span .turn.can-play {
+    opacity: 1;
 }

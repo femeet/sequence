@@ -1,0 +1,59 @@
+#prompt .container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.7);
+}
+
+#prompt .container .modal {
+    z-index: 1;
+    width: 350px;
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    border-radius: 5px;
+    position: relative;
+    animation: animate 0.3s;
+}
+
+.modal-wrapper {
+    padding: 20px;
+    text-align: center;
+}
+
+.modal-wrapper .input {
+    margin-top: 50px;
+}
+
+.modal-wrapper h2 {
+    margin: 0;
+}
+
+.modal-wrapper button {
+    padding: 5px;
+    width: 50px;
+    background: #27ae60;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.modal-wrapper button.no {
+    margin-left: 15px;
+    background: #DD1A1E;
+}
+
+@keyframes animate {
+    from {
+        transform: scale(0.5);
+    }
+    to {
+        transform: scale(1);
+    }
+}

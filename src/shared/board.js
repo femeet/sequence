@@ -578,7 +578,7 @@ const Board = [
         },
         {
             number: "9",
-            suit: "club",
+            suit: spade,
             used: false,
             team: 0
         }

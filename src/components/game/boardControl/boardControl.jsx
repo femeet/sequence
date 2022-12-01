@@ -1,10 +1,7 @@
 import './boardControl.css';
 import {face_cards_image} from "../../../shared/remaining_cards";
 import {Suits} from "../../../shared/board";
-
 import Deck from "../../../assets/images/deck.png";
-import RedCoin from "../../../assets/images/red-coin.png";
-import BlueCoin from "../../../assets/images/blue-coin.png";
 
 const Card = (c) => {
     return (
@@ -27,6 +24,13 @@ const Card = (c) => {
 const BoardControl = (props) => {
     return (
         <div className={`control-wrapper`}>
+            
+            <div className={`turn-span`}>
+                <p className={`turn ${props.canplay ? 'can-play': ''}`}>{
+                    props.canplay ? "Your Turn" : "Opponent's turn"
+                }</p>
+            </div>
+            
             <div className={`current-cards`}>
                 {
                     props.cards[props.player].map((card, id) => {
@@ -36,35 +40,34 @@ const BoardControl = (props) => {
                     })
                 }
             </div>
-            <div className={`deck-wrapper`}>
-                <div className={`pending`}>
-                    <div className={`deck`}>
-                        <img src={Deck} alt={`deck`}></img>
-                    </div>
-                    <span className={`pending-cards`}>{props.remainingCards}</span>
-                </div>
-                <div className={`used-deck`}>
-                    <span className={`pending-cards`}>Last Card Played</span>
-                    {
-                        props.lastCard ? <Card card={props.lastCard} /> : ''
-                    }
-                </div>
-            </div>
-            
+    
             <div className={`score-wrapper`}>
-                <div className={`team team-1`}>
-                    <div className={`left`}>
-                        <img className={`coin`} src={RedCoin} />
-                        <span className={`player`}>{props.players[1]}</span>
+                <div className={`team team-red`}>
+                    <div className={`name`}>
+                        <span className={`player`}>{props.players[1]  + ` ${props.player === 1 ? '(You)' : ''}`}</span>
                     </div>
                     <span className={`score`}>{props.scores[1]}</span>
                 </div>
-                <div className={`team team-2`}>
-                    <div className={`left`}>
-                        <img src={BlueCoin} />
-                        <span className={`player`}>{props.players[2]}</span>
+                <div className={`team team-blue`}>
+                    <div className={`name`}>
+                        <span className={`player`}>{props.players[2]  + ` ${props.player === 2 ? '(You)' : ''}`}</span>
                     </div>
                     <span className={`score`}>{props.scores[2]}</span>
+                </div>
+            </div>
+            
+            <div className={`deck-wrapper`}>
+                <div className={`pending`}>
+                    <p className={`pending-cards`}>Remaining Cards in Deck</p>
+                    <div className={`deck`}>
+                        <img src={Deck} alt={`deck`}></img>
+                    </div>
+                </div>
+                <div className={`pending`}>
+                    <p className={`pending-cards`}>Last Card Played</p>
+                    {
+                        props.lastCard ? <Card card={props.lastCard} /> : <div className={`deck`}></div>
+                    }
                 </div>
             </div>
         </div>
