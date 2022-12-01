@@ -45,7 +45,13 @@ const Game = () => {
                     setShowModal(true);
                 } else if (board[row][col].team !== 0 && board[row][col].team !== myPlayerID) {
                     // one-eyed jack
-                    // TODO: add check if card not included in score!
+                    if (data.scoreMatrix[row][col].scoreOfTeam !== 0) {
+                        // counted in score. cannot remove this card
+                        // show some log with timeout...
+                        console.log('cannot play this move..');
+                        return;
+                    }
+                    
                     card.oneEyed = true;
                     setJack({
                         name: 'One-Eyed Jack',
