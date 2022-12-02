@@ -1,0 +1,28 @@
+{
+  "files": {
+    "main.css": "/femeet/sequence/static/css/main.4bfa6a5d.css",
+    "main.js": "/femeet/sequence/static/js/main.d107bada.js",
+    "static/js/787.b11a6dc7.chunk.js": "/femeet/sequence/static/js/787.b11a6dc7.chunk.js",
+    "static/media/king-diamond.png": "/femeet/sequence/static/media/king-diamond.1863b1f37f0b8a7ff698.png",
+    "static/media/queen-heart.png": "/femeet/sequence/static/media/queen-heart.7e51548c2e204e71add4.png",
+    "static/media/jack-spade.png": "/femeet/sequence/static/media/jack-spade.bead2d7f5ee1f2abc794.png",
+    "static/media/jack-heart.png": "/femeet/sequence/static/media/jack-heart.bff2e008fd4a3f257250.png",
+    "static/media/king-heart.png": "/femeet/sequence/static/media/king-heart.486ef35bbe1ba2ae7192.png",
+    "static/media/queen-club.png": "/femeet/sequence/static/media/queen-club.54b9e7ff9c336c1690ad.png",
+    "static/media/jack-diamond.png": "/femeet/sequence/static/media/jack-diamond.31d676fa664c9e59b643.png",
+    "static/media/jack-club.png": "/femeet/sequence/static/media/jack-club.de6a36e15fdfa5a38496.png",
+    "static/media/queen-spade.png": "/femeet/sequence/static/media/queen-spade.b95c16d6f88cae583af7.png",
+    "static/media/king-spade.png": "/femeet/sequence/static/media/king-spade.f2031dcf7672f64ee103.png",
+    "static/media/queen-diamond.png": "/femeet/sequence/static/media/queen-diamond.1dabf77b521c06d537df.png",
+    "static/media/king-club.png": "/femeet/sequence/static/media/king-club.f80d2775c891b905f185.png",
+    "static/media/deck.png": "/femeet/sequence/static/media/deck.f860f28f5f51bbcc176e.png",
+    "index.html": "/femeet/sequence/index.html",
+    "main.4bfa6a5d.css.map": "/femeet/sequence/static/css/main.4bfa6a5d.css.map",
+    "main.d107bada.js.map": "/femeet/sequence/static/js/main.d107bada.js.map",
+    "787.b11a6dc7.chunk.js.map": "/femeet/sequence/static/js/787.b11a6dc7.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.4bfa6a5d.css",
+    "static/js/main.d107bada.js"
+  ]
+}
