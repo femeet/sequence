@@ -1,6 +1,13 @@
-.game {
-    width: 100vw;
+.main {
     height: 100vh;
     background: #eee;
     display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.game {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
 }
