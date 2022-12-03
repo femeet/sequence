@@ -1,12 +1,11 @@
 import './App.css';
-import React, { Component, useEffect } from "react";
-import {Routes, Route, BrowserRouter} from 'react-router-dom';
+import React, { Component } from "react";
+import {Routes, Route, BrowserRouter, useNavigate, useParams} from 'react-router-dom';
 
 import ControlContext from "./contexts/control-context";
 import Game from "./components/game/game";
 import Home from "./components/home/home";
 import appRoutes from "./shared/appRoutes";
-import db from "./index";
 import JoinGame from "./components/join/joinGame";
 
 class App extends Component {
@@ -21,16 +20,8 @@ class App extends Component {
     }
 
     componentDidMount() {
-
-        // Runs when the component mounts. Similar to useEffect Hook, but for a Component style class.
-
-        // db.collection("games").get().then(querySnapshot => {
-        //     console.log(querySnapshot.docs.map(doc => doc.id)); // doc.id gives the ID
-        //     // doc.data() returns the data.
-        // })
-
     }
-
+    
     render() {
         const {
             board,
@@ -45,10 +36,13 @@ class App extends Component {
                     >
                     <BrowserRouter>
                         <Routes>
-                            <Route path={appRoutes.home || appRoutes.homeDeployed} element={<Home />}></Route>
+                            <Route path={appRoutes.home} element={<Home />}></Route>
+                            <Route path={appRoutes.homeDeployed} element={<Home />}></Route>
                             <Route path={appRoutes.game} element={<Game />}></Route>
                             <Route path={appRoutes.gameWithID} element={<Game />}></Route>
+                            <Route path={appRoutes.gameWithIDDeployed} element={<Game />}></Route>
                             <Route path={appRoutes.joinGame} element={<JoinGame />}></Route>
+                            <Route path={appRoutes.joinGameDeployed} element={<JoinGame />}></Route>
                         </Routes>
                     </BrowserRouter>
                 </ControlContext.Provider>

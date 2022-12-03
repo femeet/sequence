@@ -3,7 +3,9 @@ const routes = {
     homeDeployed: "/sequence",
     game: "/game", // TODO: Remove this later.
     gameWithID: "/game/:id",
-    joinGame: "/joinGame/:id"
+    gameWithIDDeployed: "sequence/game/:id",
+    joinGame: "/joinGame/:id",
+    joinGameDeployed: "sequence/joinGame/:id"
 };
 
 export default routes;

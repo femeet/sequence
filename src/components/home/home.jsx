@@ -1,15 +1,29 @@
-import {useRef} from "react";
+import {useEffect, useRef} from "react";
 import db from "../../index";
 import {doc, setDoc} from "firebase/firestore";
 import {remaining_cards} from "../../shared/remaining_cards";
 
 import './home.css';
-import {useNavigate} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 
 const Home = () => {
 
     const textRef = useRef();
     const navigator = useNavigate();
+    
+    /**
+     * TODO: Bad code, review
+     * */
+    const ifIDthenNavigate = () => {
+        const id = window.location.search.split("?id=")[1]
+        if (id && id !== "") {
+            navigator(`/joinGame/` + id)
+        }
+    }
+    
+    useEffect(() => {
+        ifIDthenNavigate();
+    })
 
     async function setupFirestore() {
         const userName = textRef.current.value;
