@@ -18,6 +18,9 @@ const Game = () => {
     const [lastCard, setLastCard] = useState(null);
     const [showModal, setShowModal] = useState(false);
     const [jack, setJack] = useState(null);
+
+    // TODO: Utilize isGameOver State
+    const [isGameOver, setIsGameOver] = useState(false);
     
     const canPlay = (row, col) => {
         
@@ -165,6 +168,13 @@ const Game = () => {
         await setData(newData);
         parseCurrentBoard(newData.currentBoard);
         setLastCard(newData.lastCardPlayed);
+
+        // TODO: Check if status is 2 - set isGameOver to True
+
+        // If status is not 2 (if this check is not there - it will loop forever)
+        // TODO: Checks to see if game is over - set status to 2
+        // TODO: Score check - If any player has reached score 2
+        // TODO: Board check - For Tie
     }
     
     useEffect(() => {
