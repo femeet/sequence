@@ -6,6 +6,12 @@ import {remaining_cards} from "../../shared/remaining_cards";
 import './home.css';
 import {useNavigate} from "react-router-dom";
 
+import youtube from '../../assets/icons/youtube.png';
+import linkedin from '../../assets/icons/linkedin.png';
+import instagram from '../../assets/icons/instagram.png';
+import github from '../../assets/icons/github.png';
+
+
 const Home = () => {
 
     const textRef = useRef();
@@ -69,12 +75,45 @@ const Home = () => {
 
     return (
         <div className='home'>
-            <div className="create-game-div">
-                <input type="text" ref={textRef} placeholder="Enter your name"/>
-                <button onClick={() => {
-                    setupFirestore();
-                }}>Create a Game
-                </button>
+           <div className="full-height-div">
+               <h1 id="title">Sequence Game Online</h1>
+               <div className="create-game-div">
+                   <h2>Create a New Game</h2>
+                   <div style={{flex:1}}></div>
+                   <input type="text" ref={textRef} placeholder="Enter your name"/><br/>
+                   <button onClick={() => {
+                       setupFirestore();
+                   }}>Create a Game
+                   </button>
+                   <div style={{flex:1}}></div>
+               </div>
+           </div>
+            <div className="full-height-div" style={{background:"#34495e"}}>
+                <h1 id="title">Meet The Devs:</h1>
+                <div className="devs">
+                    <div>
+                        <img src="https://femindharamshi.com/static/media/favicon.df59357d43584154d3d1.png"/>
+                        <h2>Femin Dharamshi</h2>
+                        <h4>Carnegie Mellon University</h4>
+                        <div className="links">
+                            <img src={youtube}/>
+                            <img src={instagram}/>
+                            <img src={github}/>
+                            <img src={linkedin}/>
+                        </div>
+                    </div>
+                    <div>
+                        <img src="https://avatars.githubusercontent.com/u/26139149?v=4" />
+                        <h2>Meet Shah</h2>
+                        <h4>Carnegie Mellon University</h4>
+                        <div className="links">
+                            <img src={youtube}/>
+                            <img src={instagram}/>
+                            <img src={github}/>
+                            <img src={linkedin}/>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     )

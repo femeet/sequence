@@ -25,7 +25,7 @@ const JoinGame = () => {
             return;
         }
 
-        // TODO: Allocate n cards to each player (update Firestore)
+        // Allocate n cards to each player (update Firestore)
         let n = 6;
         var tempData = {...data};
         var currentCards = {}
