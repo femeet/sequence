@@ -9,6 +9,7 @@ import appRoutes from "./shared/appRoutes";
 import db from "./index";
 import JoinGame from "./components/join/joinGame";
 import Rules from "./components/rules/rules";
+import {Toaster} from "react-hot-toast";
 
 class App extends Component {
   
@@ -39,6 +40,7 @@ class App extends Component {
         
         return (
             <React.Fragment>
+                <Toaster/>
                 <ControlContext.Provider
                     value={{
                         board

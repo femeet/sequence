@@ -4,6 +4,7 @@ import {useEffect, useRef, useState} from "react";
 import {doc, onSnapshot, setDoc} from "firebase/firestore";
 import db from "../../index";
 import copy from '../../assets/copy.png';
+import toast from "react-hot-toast";
 
 const JoinGame = () => {
 
@@ -16,7 +17,7 @@ const JoinGame = () => {
 
     const [startDisabled, setStartDisabled] = useState(true);
 
-    const navigator = useNavigate();
+    const navigate = useNavigate();
 
     async function start_game() {
 
@@ -53,7 +54,7 @@ const JoinGame = () => {
         // alert("Firestore updated. Game Started.");
 
         // Done: Navigate to board page
-        navigator(`/game/${id}`)
+        navigate(`/game/${id}`)
     }
 
     async function initialCheck(newData) {
@@ -66,7 +67,7 @@ const JoinGame = () => {
         const playerID = parseInt(window.localStorage.getItem("playerID"));
 
         if(gameID === id && newData["status"] === 1 && playerID != null) {
-            navigator(`/game/${id}`)
+            navigate(`/game/${id}`)
         }
 
         if(gameID !== id) {
@@ -116,7 +117,7 @@ const JoinGame = () => {
                 Share Game Link:
                 <div className="jg-link">
                     {window.location.href}
-                    <img src={copy} alt={"copy-icon"} width="20px" height="20px"/>
+                    <img src={copy} alt={"copy-icon"} onClick={()=>{navigator.clipboard.writeText(window.location.href).then(r => toast.success("Copied to Clipboard"))}} width="20px" height="20px"/>
                 </div>
             </div>
 
