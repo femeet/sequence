@@ -8,6 +8,7 @@ import Home from "./components/home/home";
 import appRoutes from "./shared/appRoutes";
 import db from "./index";
 import JoinGame from "./components/join/joinGame";
+import Rules from "./components/rules/rules";
 
 class App extends Component {
   
@@ -49,6 +50,7 @@ class App extends Component {
                             <Route path={appRoutes.game} element={<Game />}></Route>
                             <Route path={appRoutes.gameWithID} element={<Game />}></Route>
                             <Route path={appRoutes.joinGame} element={<JoinGame />}></Route>
+                            <Route path={appRoutes.rules} element={<Rules />}></Route>
                         </Routes>
                     </BrowserRouter>
                 </ControlContext.Provider>

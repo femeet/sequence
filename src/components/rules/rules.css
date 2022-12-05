@@ -1,0 +1,20 @@
+.rules-section {
+    margin-top: 20px;
+}
+
+.rules-header {
+    font-weight: bolder;
+    font-size: xx-large;
+    border-bottom: 2px solid black;
+}
+
+.secondary-header {
+    margin-top: 10px;
+    font-weight: bolder;
+    font-size: x-large;
+    border-bottom: 0.5px solid grey;
+}
+
+.rules-details {
+    font-size: large;
+}
