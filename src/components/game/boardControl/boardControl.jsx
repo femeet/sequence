@@ -3,6 +3,8 @@ import {face_cards_image} from "../../../shared/remaining_cards";
 import {Suits} from "../../../shared/board";
 import Deck from "../../../assets/images/deck.png";
 
+import Delete from "../../../assets/icons/delete.png";
+
 const Card = (c) => {
     return (
         <div className={`player-card`}>
@@ -16,6 +18,12 @@ const Card = (c) => {
                         <img src={Suits[c.card.suit]} className={`suit top`} alt={c.card.suit}></img>
                         <img src={Suits[c.card.suit]} className={`suit bottom`} alt={c.card.suit}></img>
                     </div>
+            }
+            {
+                c.card.discard ?
+                    <div className={`discard-wrapper`} onClick={() => c.discard(c.card)}>
+                        <img src={Delete} className={`delete`} alt={c.card.suit}></img>
+                    </div> : ''
             }
         </div>
     )
@@ -35,7 +43,7 @@ const BoardControl = (props) => {
                 {
                     props.cards[props.player].map((card, id) => {
                         return (
-                            <Card card={card} key={id} />
+                            <Card discard={props.discardCard} card={card} key={id} />
                         )
                     })
                 }

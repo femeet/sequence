@@ -17,7 +17,7 @@ const Game = () => {
     const [myPlayerID, setMyPlayerID] = useState(0);
     const [lastCard, setLastCard] = useState(null);
     const [showModal, setShowModal] = useState(false);
-    const [jack, setJack] = useState(null);
+    const [modal, setModal] = useState(null);
 
     // TODO: Utilize isGameOver State
     const [isGameOver, setIsGameOver] = useState(false);
@@ -39,11 +39,12 @@ const Game = () => {
             if (card.number === "J") {
                 if ((card.suit === 'diamond' || card.suit === 'club') && board[row][col].team === 0) {
                     // valid two-eyed jack attempt
-                    setJack({
-                        name: 'Two-Eyed Jack',
+                    setModal({
                         row: row,
                         col: col,
-                        card: card
+                        card: card,
+                        action: executePlay,
+                        message: 'Are you sure you want to use Two-Eyed Jack?'
                     })
                     setShowModal(true);
                 } else if (board[row][col].team !== 0 && board[row][col].team !== myPlayerID) {
@@ -56,11 +57,12 @@ const Game = () => {
                     }
                     
                     card.oneEyed = true;
-                    setJack({
-                        name: 'One-Eyed Jack',
+                    setModal({
                         row: row,
                         col: col,
-                        card: card
+                        card: card,
+                        action: executePlay,
+                        message: 'Are you sure you want to use One-Eyed Jack?'
                     })
                     setShowModal(true);
                 }
@@ -90,7 +92,48 @@ const Game = () => {
         }
         setBoard(localBoard);
     }
-
+    
+    /**
+     * Remove card and get another card...
+     * */
+    const discardCard = (card) => {
+        setModal({
+            card: card,
+            action: discardCardConfirm,
+            message: 'Are you sure you want to discard this card?'
+        })
+        setShowModal(true);
+    }
+    
+    /**
+     * Discard current card and pull another card to use...
+     * */
+    const discardCardConfirm = async (x, y, card) => {
+        let newData = {...data};
+    
+        let cardIndex = getCardIndex(card);
+        const randomInt = Math.floor(Math.random() * data.remainingCards.length);
+        newData.currentCards[myPlayerID][cardIndex] = data.remainingCards[randomInt];
+        newData.remainingCards.splice(randomInt, 1); // removing new pop-ed card
+    
+        await setDoc(doc(db, "games", id), newData);
+    }
+    
+    /**
+     * Utility method to check if current user
+     * cards contain an already placed card
+     * */
+    const parseCurrentPlayerCards = (currentBoard, cards) => {
+        for (const card of cards) {
+            if (card.number !== "J") {
+                if (currentBoard[card.position[0][0]][card.position[0][1]] !== 0
+                    && currentBoard[card.position[1][0]][card.position[1][1]]) {
+                    card.discard = true;
+                    console.log(card);
+                }
+            }
+        }
+    }
     
     const getCardIndex = (card) => {
         for (let i = 0; i < data.currentCards[myPlayerID].length; i++) {
@@ -168,6 +211,9 @@ const Game = () => {
         await setData(newData);
         parseCurrentBoard(newData.currentBoard);
         setLastCard(newData.lastCardPlayed);
+    
+        const playerID = parseInt(window.localStorage.getItem("playerID"));
+        parseCurrentPlayerCards(newData.currentBoard, newData.currentCards[playerID]);
 
         // TODO: Check if status is 2 - set isGameOver to True
 
@@ -178,13 +224,12 @@ const Game = () => {
     }
     
     useEffect(() => {
+        const playerID = parseInt(window.localStorage.getItem("playerID"));
+        setMyPlayerID(playerID);
+        
         const unsubscribe = onSnapshot(doc(db, "games", id), (doc) => {
             initialCheck(doc.data()).then();
         });
-
-        const playerID = parseInt(window.localStorage.getItem("playerID"));
-        setMyPlayerID(playerID);
-
         return () => unsubscribe()
     }, [])
     
@@ -207,10 +252,11 @@ const Game = () => {
                             currentPlayer={data.currentPlayer}
                             lastCard={lastCard}
                             canplay={myPlayerID === data.currentPlayer}
+                            discardCard={discardCard}
                         />
                         <div className={`user-prompt`}>
                             {
-                                showModal ? <Modal play={executePlay} jack={jack} setShowModal={setShowModal} /> : null
+                                showModal ? <Modal action={modal.action} modal={modal} setShowModal={setShowModal} /> : null
                             }
                         </div>
                     </div>
