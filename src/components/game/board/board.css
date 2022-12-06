@@ -3,6 +3,11 @@
     opacity: 0.5;
 }
 
+.board-wrapper.end-game {
+    pointer-events: none;
+    opacity: 1;
+}
+
 .card {
     width: 85px;
     height: 60px;

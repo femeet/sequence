@@ -188,3 +188,47 @@
 .control-wrapper .turn-span .turn.can-play {
     opacity: 1;
 }
+
+.end-wrapper {
+    background: #000;
+    border-radius: 10px;
+    margin-top: 30px;
+    padding: 15px;
+    text-align: center;
+    color: #fff;
+}
+
+.end-wrapper h3 {
+    font-size: 26px;
+    margin: 0 0 20px;
+}
+
+.end-wrapper span {
+    font-size: 22px;
+    font-weight: 600;
+}
+
+.end-wrapper span.red {
+    color: #dd1a1e;
+}
+
+.end-wrapper span.blue {
+    color: #0000ff;
+}
+
+.end-wrapper span.score {
+    margin: 0 20px;
+}
+
+.end-wrapper .message {
+    font-size: 18px;
+    line-height: 26px;
+}
+
+.end-wrapper button {
+    background: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+}

@@ -8,6 +8,7 @@ import {useParams} from "react-router-dom";
 import {Board} from "../../shared/board";
 import checkForScore from '../../gameLogic';
 import Modal from "./modal/modal";
+import resetGame from "../../utils/resetGame";
 
 const Game = () => {
     
@@ -18,9 +19,7 @@ const Game = () => {
     const [lastCard, setLastCard] = useState(null);
     const [showModal, setShowModal] = useState(false);
     const [modal, setModal] = useState(null);
-
-    // TODO: Utilize isGameOver State
-    const [isGameOver, setIsGameOver] = useState(false);
+    const [gameEnd, setGameEnd] = useState(0);
     
     const canPlay = (row, col) => {
         
@@ -144,6 +143,15 @@ const Game = () => {
         }
     }
     
+    const endOfGame = (data) => {
+        const winnerId = data.score[0] > data.score[1] ? 0 : 1;
+        setGameEnd(winnerId);
+    }
+    
+    const reStartGame = async () => {
+        await resetGame(id);
+    }
+    
     /**
      * Main method to implement play action
      * @param row Row of card selected
@@ -169,14 +177,12 @@ const Game = () => {
     
         newData.lastCardPlayed = card;
         newData.currentPlayer = data.currentPlayer === 1 ? 2 : 1;
-    
-        // TODO: Check if score updated
+        
         let result = checkForScore(data, row, col, myPlayerID);
         if (result) {
             result.indexes.forEach(index => {
             
                 // TODO: Do not change for corners!!!
-            
                 newData.scoreMatrix[index.x][index.y] = {
                     "scoreOfTeam": myPlayerID,
                     "direction": result.direction
@@ -189,6 +195,9 @@ const Game = () => {
             }
         
             newData.score[myPlayerID] = newData.score[myPlayerID] + 1;
+            
+            // player reached score 2 - end of game!!
+            if (newData.score[myPlayerID] === 2) newData.status = 2;
         }
     
         await setDoc(doc(db, "games", id), newData);
@@ -214,13 +223,8 @@ const Game = () => {
     
         const playerID = parseInt(window.localStorage.getItem("playerID"));
         parseCurrentPlayerCards(newData.currentBoard, newData.currentCards[playerID]);
-
-        // TODO: Check if status is 2 - set isGameOver to True
-
-        // If status is not 2 (if this check is not there - it will loop forever)
-        // TODO: Checks to see if game is over - set status to 2
-        // TODO: Score check - If any player has reached score 2
-        // TODO: Board check - For Tie
+        
+        if (newData.status === 2) endOfGame(newData);
     }
     
     useEffect(() => {
@@ -242,6 +246,7 @@ const Game = () => {
                             board={board}
                             play={play}
                             canplay={myPlayerID === data.currentPlayer}
+                            gameEnd={gameEnd}
                         />
                         <BoardControl
                             scores={data.score}
@@ -253,6 +258,8 @@ const Game = () => {
                             lastCard={lastCard}
                             canplay={myPlayerID === data.currentPlayer}
                             discardCard={discardCard}
+                            gameEnd={gameEnd}
+                            reset={reStartGame}
                         />
                         <div className={`user-prompt`}>
                             {
