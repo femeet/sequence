@@ -89,7 +89,7 @@ const Game = () => {
                 localBoard[row][col].team = currentBoard[row][col];
             }
         }
-        if (currentPlayer === myPlayerID) {
+        if (currentPlayer) {
             localBoard[lastCard.row][lastCard.col].overlay = true;
         }
         setBoard(localBoard);
@@ -222,11 +222,11 @@ const Game = () => {
     }
     
     async function initialCheck(newData) {
-        await setData(newData);
-        parseCurrentBoard(newData.currentBoard, newData.lastCardPlayed, newData.currentPlayer);
-        setLastCard(newData.lastCardPlayed);
-    
         const playerID = parseInt(window.localStorage.getItem("playerID"));
+        await setData(newData);
+        parseCurrentBoard(newData.currentBoard, newData.lastCardPlayed, newData.currentPlayer === playerID);
+        setLastCard(newData.lastCardPlayed);
+        
         parseCurrentPlayerCards(newData.currentBoard, newData.currentCards[playerID]);
         
         if (newData.status === 2) endOfGame(newData);
