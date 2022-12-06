@@ -8,13 +8,13 @@ import './modal.css';
  * Link: https://javascript.plainenglish.io/how-to-create-a-popup-modal-in-react-39315907998e
  */
 
-export const Modal = ({ play, jack, setShowModal }) => {
+export const Modal = ({ action, modal, setShowModal }) => {
     
     // close the modal when clicking outside the modal.
     const modalRef = useRef();
     
     const confirm = () => {
-        play(jack.row, jack.col, jack.card);
+        action(modal.row, modal.col, modal.card);
         setShowModal(false);
     }
     
@@ -28,7 +28,7 @@ export const Modal = ({ play, jack, setShowModal }) => {
         <div className="container" ref={modalRef} onClick={closeModal}>
             <div className="modal">
                 <div className={`modal-wrapper`}>
-                    <h2>Are you sure you want to use {jack.name}?</h2>
+                    <h2>{modal.message}</h2>
                     <div className={`input`}>
                         <button onClick={confirm} className={`yes`}>Yes</button>
                         <button onClick={(e) => setShowModal(false)} className={`no`}>No</button>

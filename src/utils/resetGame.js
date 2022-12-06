@@ -1,8 +1,9 @@
 import {remaining_cards} from "../shared/remaining_cards";
 import {doc, setDoc} from "firebase/firestore";
+import db from "../index";
 
-const resetGame = async (db, gameID) => {
-
+const resetGame = async (gameID) => {
+    
     let newGameDoc = {};
 
     // Current Board
@@ -19,7 +20,7 @@ const resetGame = async (db, gameID) => {
     newGameDoc['currentBoard'] = currentBoard;
 
     // Status
-    newGameDoc['status'] = 0;
+    newGameDoc['status'] = 1;
 
     // Players - Let players be the same
 
@@ -31,8 +32,8 @@ const resetGame = async (db, gameID) => {
 
     // Score
     newGameDoc["score"] = {
-        "1": 0,
-        "2": 0
+        1: 0,
+        2: 0
     }
 
     // Score Matrix
@@ -55,7 +56,7 @@ const resetGame = async (db, gameID) => {
     // Current Cards
     let n = 6;
     let currentCards = {}
-    for(let i = 1; i <= Object.keys(newGameDoc["players"]).length; i ++) {
+    for(let i = 1; i <= 2; i ++) {
         currentCards[i.toString()] = []
         for(let j = 0; j < n; j++) {
             const randomInt = Math.floor(Math.random() * newGameDoc['remainingCards'].length);
@@ -65,5 +66,7 @@ const resetGame = async (db, gameID) => {
     }
     newGameDoc["currentCards"] = currentCards;
 
-    await setDoc(doc(db, "games", gameID), newGameDoc);
+    await setDoc(doc(db, "games", gameID), newGameDoc, {merge: true});
 }
+
+export default resetGame;

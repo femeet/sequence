@@ -45,8 +45,8 @@ const JoinGame = () => {
         tempData["currentPlayer"] = 1
         
         tempData["score"] = {
-            "1": 0,
-            "2": 0
+            1: 0,
+            2: 0
         }
 
         // Done: Update Firebase

@@ -3,6 +3,8 @@ import {face_cards_image} from "../../../shared/remaining_cards";
 import {Suits} from "../../../shared/board";
 import Deck from "../../../assets/images/deck.png";
 
+import Delete from "../../../assets/icons/delete.png";
+
 const Card = (c) => {
     return (
         <div className={`player-card`}>
@@ -16,6 +18,12 @@ const Card = (c) => {
                         <img src={Suits[c.card.suit]} className={`suit top`} alt={c.card.suit}></img>
                         <img src={Suits[c.card.suit]} className={`suit bottom`} alt={c.card.suit}></img>
                     </div>
+            }
+            {
+                c.card.discard ?
+                    <div className={`discard-wrapper`} onClick={() => c.discard(c.card)}>
+                        <img src={Delete} className={`delete`} alt={c.card.suit}></img>
+                    </div> : ''
             }
         </div>
     )
@@ -35,7 +43,7 @@ const BoardControl = (props) => {
                 {
                     props.cards[props.player].map((card, id) => {
                         return (
-                            <Card card={card} key={id} />
+                            <Card discard={props.discardCard} card={card} key={id} />
                         )
                     })
                 }
@@ -55,21 +63,38 @@ const BoardControl = (props) => {
                     <span className={`score`}>{props.scores[2]}</span>
                 </div>
             </div>
-            
-            <div className={`deck-wrapper`}>
-                <div className={`pending`}>
-                    <p className={`pending-cards`}>Remaining Cards in Deck</p>
-                    <div className={`deck`}>
-                        <img src={Deck} alt={`deck`}></img>
+    
+    
+            {
+                !props.gameEnd ?
+                    <div className={`deck-wrapper`}>
+                        <div className={`pending`}>
+                            <p className={`pending-cards`}>Remaining Cards in Deck</p>
+                            <div className={`deck`}>
+                                <img src={Deck} alt={`deck`}></img>
+                            </div>
+                        </div>
+                        <div className={`pending`}>
+                            <p className={`pending-cards`}>Last Card Played</p>
+                            {
+                                props.lastCard ? <Card card={props.lastCard} /> : <div className={`deck`}></div>
+                            }
+                        </div>
                     </div>
-                </div>
-                <div className={`pending`}>
-                    <p className={`pending-cards`}>Last Card Played</p>
-                    {
-                        props.lastCard ? <Card card={props.lastCard} /> : <div className={`deck`}></div>
-                    }
-                </div>
-            </div>
+                    :
+                    <div className={`end-wrapper`}>
+                        <h3>Game Over!!!</h3>
+                        <div className={`scores`}>
+                            <span className={`red`}>{props.players[1]}</span>
+                            <span className={`score`}>{props.scores[1] + ` - ` + props.scores[2]}</span>
+                            <span className={`blue`}>{props.players[2]}</span>
+                        </div>
+                        <p className={`message`}>
+                            {props.players[props.gameEnd]} won the game!<br/> Would you like a re-match?
+                        </p>
+                        <button onClick={() => props.reset()} className={`restart`}>Restart</button>
+                    </div>
+            }
         </div>
     )
 }

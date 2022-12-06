@@ -4,7 +4,7 @@ import BlueCoin from "../../../assets/images/blue-coin.png";
 
 const GameBoard = (props) => {
     return (
-        <div className={`board-wrapper ${props.canplay ? `` : `no-play`}`}>
+        <div className={`board-wrapper ${props.canplay ? `` : `no-play`} ${props.gameEnd ? `end-game` : ``}`}>
             {
                 props.board.map((row, id) => {
                     return (
@@ -37,6 +37,11 @@ const GameBoard = (props) => {
                                                             <img alt={`coin`} src={card.team === 1 ? RedCoin : BlueCoin} />
                                                         </div>
                                                     : ''
+                                                }
+                                                {
+                                                    card.overlay ?
+                                                        <div className={`overlay ${card.team === 1 ? `red` : `blue`}`}>
+                                                    </div> : null
                                                 }
                                             </div>
                                         </div>

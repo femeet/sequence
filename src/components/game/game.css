@@ -1,13 +1,24 @@
 .main {
-    height: 100vh;
-    background: #eee;
+    min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
+
+    background-color: #e5e5f7;
+    opacity: 1;
+    background-image:  radial-gradient(#444cf7 0.5px, transparent 0.5px), radial-gradient(#444cf7 0.5px, #e5e5f7 0.5px);
+    background-size: 20px 20px;
+    background-position: 0 0,10px 10px;
+
+    /*background-color: #e5e5f7;*/
+    /*opacity: 0.8;*/
+    /*background-image: radial-gradient(circle at center center, #bef500, #e5e5f7), repeating-radial-gradient(circle at center center, #bef500, #bef500, 10px, transparent 20px, transparent 10px);*/
+    /*background-blend-mode: multiply;*/
 }
 
 .game {
     display: flex;
     justify-content: center;
     align-items: flex-start;
+    margin: 50px;
 }
