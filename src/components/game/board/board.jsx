@@ -38,6 +38,11 @@ const GameBoard = (props) => {
                                                         </div>
                                                     : ''
                                                 }
+                                                {
+                                                    card.overlay ?
+                                                        <div className={`overlay ${card.team === 1 ? `red` : `blue`}`}>
+                                                    </div> : null
+                                                }
                                             </div>
                                         </div>
                                     )

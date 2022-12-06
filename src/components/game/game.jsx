@@ -82,12 +82,15 @@ const Game = () => {
         setBoard(localBoard);
     }
     
-    const parseCurrentBoard = (currentBoard) => {
+    const parseCurrentBoard = (currentBoard, lastCard, currentPlayer) => {
         let localBoard = board;
         for (let row = 0; row < 10; row++) {
             for (let col = 0; col < 10; col++) {
                 localBoard[row][col].team = currentBoard[row][col];
             }
+        }
+        if (currentPlayer === myPlayerID) {
+            localBoard[lastCard.row][lastCard.col].overlay = true;
         }
         setBoard(localBoard);
     }
@@ -176,6 +179,8 @@ const Game = () => {
         newData.remainingCards.splice(randomInt, 1); // removing new pop-ed card
     
         newData.lastCardPlayed = card;
+        newData.lastCardPlayed.row = row;
+        newData.lastCardPlayed.col = col
         newData.currentPlayer = data.currentPlayer === 1 ? 2 : 1;
         
         let result = checkForScore(data, row, col, myPlayerID);
@@ -218,7 +223,7 @@ const Game = () => {
     
     async function initialCheck(newData) {
         await setData(newData);
-        parseCurrentBoard(newData.currentBoard);
+        parseCurrentBoard(newData.currentBoard, newData.lastCardPlayed, newData.currentPlayer);
         setLastCard(newData.lastCardPlayed);
     
         const playerID = parseInt(window.localStorage.getItem("playerID"));

@@ -32,6 +32,22 @@
     align-items: center;
 }
 
+.card .content .overlay {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background: #dd1a1e;
+    z-index: 1;
+    opacity: 0.5;
+    border-radius: 5px;
+    animation: fadeOut 5s;
+    animation-fill-mode: forwards;
+}
+
+.card .content .overlay.blue {
+    background: #0000ff;
+}
+
 .card .content .suit-wrapper .club {
     background: url("../../../assets/images/club.png") no-repeat;
 }
@@ -92,4 +108,9 @@
 
 .card .content .coin img {
     width: 40px;
+}
+
+@keyframes fadeOut {
+    from { opacity: 1; }
+    to   { opacity: 0; display: none; }
 }
