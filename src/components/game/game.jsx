@@ -147,7 +147,7 @@ const Game = () => {
     }
     
     const endOfGame = (data) => {
-        const winnerId = data.score[0] > data.score[1] ? 0 : 1;
+        const winnerId = data.score[1] > data.score[2] ? 1 : 2;
         setGameEnd(winnerId);
     }
     
@@ -183,26 +183,28 @@ const Game = () => {
         newData.lastCardPlayed.col = col
         newData.currentPlayer = data.currentPlayer === 1 ? 2 : 1;
         
-        let result = checkForScore(data, row, col, myPlayerID);
-        if (result) {
-            result.indexes.forEach(index => {
+        if (!card.oneEyed) {
+            let result = checkForScore(data, row, col, myPlayerID);
+            if (result) {
+                result.indexes.forEach(index => {
             
-                // TODO: Do not change for corners!!!
-                newData.scoreMatrix[index.x][index.y] = {
+                    // TODO: Do not change for corners!!!
+                    newData.scoreMatrix[index.x][index.y] = {
+                        "scoreOfTeam": myPlayerID,
+                        "direction": result.direction
+                    }
+                })
+        
+                newData.scoreMatrix[row][col] = {
                     "scoreOfTeam": myPlayerID,
                     "direction": result.direction
                 }
-            })
         
-            newData.scoreMatrix[row][col] = {
-                "scoreOfTeam": myPlayerID,
-                "direction": result.direction
+                newData.score[myPlayerID] = newData.score[myPlayerID] + 1;
+        
+                // player reached score 2 - end of game!!
+                if (newData.score[myPlayerID] === 2) newData.status = 2;
             }
-        
-            newData.score[myPlayerID] = newData.score[myPlayerID] + 1;
-            
-            // player reached score 2 - end of game!!
-            if (newData.score[myPlayerID] === 2) newData.status = 2;
         }
     
         await setDoc(doc(db, "games", id), newData);
