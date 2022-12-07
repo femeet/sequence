@@ -77,9 +77,17 @@ const Home = () => {
 
     return (
         <div className='home'>
-            <div className="full-height-div" style={{ backgroundImage: `url(${background})`, backgroundSize: "cover"}}>
+            <div className="ninety-height-div" style={{ backgroundImage: `url(${background})`, backgroundSize: "cover", backgroundAttachment: "fixed"}}>
                 <span className="title">The Sequence Game</span><br/>
-                <input type="text" ref={textRef} placeholder="Enter your name" id="name-input-home"/><br/>
+                <div className="name-wrapping-div-home"><input type="text" ref={textRef} placeholder="Enter your name" id="name-input-home"/>
+                    <button className="create-game-button" onClick={() => {
+                        setupFirestore();
+                    }}>Create a Game
+                    </button>
+                </div>
+            </div>
+            <div className="developed-at" >
+                Developed at&nbsp;<strong>Carnegie Mellon University</strong>
             </div>
            <div className="full-height-div">
                <h1 id="title">Sequence Game Online</h1>
