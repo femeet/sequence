@@ -6,6 +6,8 @@ import {remaining_cards} from "../../shared/remaining_cards";
 import './home.css';
 import {useNavigate} from "react-router-dom";
 
+import background from '../../assets/images/home_background.png';
+
 import youtube from '../../assets/icons/youtube.png';
 import linkedin from '../../assets/icons/linkedin.png';
 import instagram from '../../assets/icons/instagram.png';
@@ -75,6 +77,10 @@ const Home = () => {
 
     return (
         <div className='home'>
+            <div className="full-height-div" style={{ backgroundImage: `url(${background})`, backgroundSize: "cover"}}>
+                <span className="title">The Sequence Game</span><br/>
+                <input type="text" ref={textRef} placeholder="Enter your name" id="name-input-home"/><br/>
+            </div>
            <div className="full-height-div">
                <h1 id="title">Sequence Game Online</h1>
                <div className="create-game-div">
