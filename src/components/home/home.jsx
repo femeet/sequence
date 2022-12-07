@@ -12,6 +12,7 @@ import youtube from '../../assets/icons/youtube.png';
 import linkedin from '../../assets/icons/linkedin.png';
 import instagram from '../../assets/icons/instagram.png';
 import github from '../../assets/icons/github.png';
+import toast from "react-hot-toast";
 
 
 const Home = () => {
@@ -21,7 +22,11 @@ const Home = () => {
 
     async function setupFirestore() {
         const userName = textRef.current.value;
-        // TODO: Add validation for userName;
+
+        if(userName.length === 0) {
+            toast.error("Please enter your name");
+            return;
+        }
 
         let newGameDoc = {};
         let currentBoard = {};
