@@ -5,6 +5,7 @@ import {doc, onSnapshot, setDoc} from "firebase/firestore";
 import db from "../../index";
 import copy from '../../assets/copy.png';
 import toast from "react-hot-toast";
+import background from "../../assets/images/home_background.png";
 
 const JoinGame = () => {
 
@@ -152,7 +153,7 @@ const JoinGame = () => {
     }
 
     return (
-        <div className="jg-main">
+        <div className="jg-main" style={{ backgroundImage: `url(${background})`, backgroundSize: "cover"}}>
             <div className="jg-wrapper-div">
 
                 {data != null && !player2Joined && shareUI()}

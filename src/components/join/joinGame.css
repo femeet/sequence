@@ -12,7 +12,6 @@
 .jg-wrapper-div {
     width: 80vw;
     height: 80vh;
-    background: white;
     color: black;
     border-radius: 25px;
     display: inline-flex;
@@ -21,6 +20,10 @@
     box-sizing: border-box;
     align-items: center;
     justify-content: center;
+
+    background-color: rgba(255, 255, 255, .15);
+    backdrop-filter: blur(10px);
+
 }
 
 .jg-link-div {
@@ -28,6 +31,7 @@
     box-sizing: border-box;
     font-size: x-large;
     font-weight: bold;
+    color: white;
 }
 
 .jg-link {
@@ -42,7 +46,8 @@
     font-size: medium;
     font-weight: normal;
     box-shadow: 0 0 5px gray;
-    color: #e74c3c;
+    /*color: #e74c3c;*/
+    color: white;
 }
 
 .players-div {
