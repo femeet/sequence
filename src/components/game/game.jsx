@@ -230,7 +230,8 @@ const Game = () => {
         
         parseCurrentPlayerCards(newData.currentBoard, newData.currentCards[playerID]);
         
-        if (newData.status === 2) endOfGame(newData);
+        if (newData.status === 2) endOfGame(newData)
+        else setGameEnd(0);
     }
     
     useEffect(() => {
