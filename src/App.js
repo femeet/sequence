@@ -1,6 +1,6 @@
 import './App.css';
 import React, { Component, useEffect } from "react";
-import {Routes, Route, BrowserRouter} from 'react-router-dom';
+import {Routes, Route, HashRouter} from 'react-router-dom';
 
 import ControlContext from "./contexts/control-context";
 import Game from "./components/game/game";
@@ -46,7 +46,7 @@ class App extends Component {
                         board
                     }}
                     >
-                    <BrowserRouter>
+                    <HashRouter>
                         <Routes>
                             <Route path={appRoutes.home} element={<Home />}></Route>
                             <Route path={appRoutes.game} element={<Game />}></Route>
@@ -54,7 +54,7 @@ class App extends Component {
                             <Route path={appRoutes.joinGame} element={<JoinGame />}></Route>
                             <Route path={appRoutes.rules} element={<Rules />}></Route>
                         </Routes>
-                    </BrowserRouter>
+                    </HashRouter>
                 </ControlContext.Provider>
             </React.Fragment>
         )
