@@ -7,6 +7,7 @@ import './home.css';
 import {useNavigate} from "react-router-dom";
 
 import background from '../../assets/images/home_background.png';
+import background2 from '../../assets/images/femeetbackground.jpg';
 
 import youtube from '../../assets/icons/youtube.png';
 import linkedin from '../../assets/icons/linkedin.png';
@@ -23,10 +24,10 @@ const Home = () => {
     async function setupFirestore() {
         const userName = textRef.current.value;
 
-        if(userName.length === 0) {
-            toast.error("Please enter your name");
-            return;
-        }
+        // if(userName.length() === 0) {
+        //     toast.error("Please enter your name");
+        //     return;
+        // }
 
         let newGameDoc = {};
         let currentBoard = {};
@@ -94,20 +95,7 @@ const Home = () => {
             <div className="developed-at" >
                 Developed at&nbsp;<strong>Carnegie Mellon University</strong>
             </div>
-           <div className="full-height-div">
-               <h1 id="title">Sequence Game Online</h1>
-               <div className="create-game-div">
-                   <h2>Create a New Game</h2>
-                   <div style={{flex:1}}></div>
-                   <input type="text" ref={textRef} placeholder="Enter your name"/><br/>
-                   <button onClick={() => {
-                       setupFirestore();
-                   }}>Create a Game
-                   </button>
-                   <div style={{flex:1}}></div>
-               </div>
-           </div>
-            <div className="full-height-div" style={{background:"#34495e"}}>
+            <div className="full-height-div" style={{ backgroundImage: `url(${background2})`, backgroundSize: "cover", backgroundAttachment: "fixed"}}>
                 <h1 id="title">Meet The Devs:</h1>
                 <div className="devs">
                     <div>
