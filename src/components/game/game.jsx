@@ -46,7 +46,7 @@ const Game = () => {
                         message: 'Are you sure you want to use Two-Eyed Jack?'
                     })
                     setShowModal(true);
-                } else if (board[row][col].team !== 0 && board[row][col].team !== myPlayerID) {
+                } else if ((card.suit === 'spade' || card.suit === 'heart') && board[row][col].team !== 0 && board[row][col].team !== myPlayerID) {
                     // one-eyed jack
                     if (data.scoreMatrix[row][col].scoreOfTeam !== 0) {
                         // counted in score. cannot remove this card
@@ -131,7 +131,6 @@ const Game = () => {
                 if (currentBoard[card.position[0][0]][card.position[0][1]] !== 0
                     && currentBoard[card.position[1][0]][card.position[1][1]]) {
                     card.discard = true;
-                    console.log(card);
                 }
             }
         }
@@ -231,7 +230,8 @@ const Game = () => {
         
         parseCurrentPlayerCards(newData.currentBoard, newData.currentCards[playerID]);
         
-        if (newData.status === 2) endOfGame(newData);
+        if (newData.status === 2) endOfGame(newData)
+        else setGameEnd(0);
     }
     
     useEffect(() => {
