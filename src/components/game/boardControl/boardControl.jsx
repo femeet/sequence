@@ -34,7 +34,7 @@ const BoardControl = (props) => {
         <div className={`control-wrapper`}>
             
             <div className={`turn-span`}>
-                <p className={`turn ${props.canplay ? 'can-play': ''}`}>{
+                <p className={`turn ${props.canplay ? 'can-play': ''} ${props.player === 1 ? 'red' : 'blue'}`}>{
                     props.canplay ? "Your Turn" : "Opponent's turn"
                 }</p>
             </div>
@@ -71,6 +71,9 @@ const BoardControl = (props) => {
                         <div className={`pending`}>
                             <p className={`pending-cards`}>Remaining Cards in Deck</p>
                             <div className={`deck`}>
+                                <div className={`count`}>
+                                    <span>{props.remainingCards}</span>
+                                </div>
                                 <img src={Deck} alt={`deck`}></img>
                             </div>
                         </div>

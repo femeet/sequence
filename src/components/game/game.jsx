@@ -89,7 +89,7 @@ const Game = () => {
                 localBoard[row][col].team = currentBoard[row][col];
             }
         }
-        if (currentPlayer) {
+        if (currentPlayer && lastCard) {
             localBoard[lastCard.row][lastCard.col].overlay = true;
         }
         setBoard(localBoard);
@@ -152,6 +152,8 @@ const Game = () => {
     
     const reStartGame = async () => {
         await resetGame(id);
+        setBoard(Board);
+        setGameEnd(0);
     }
     
     /**
@@ -247,7 +249,7 @@ const Game = () => {
     return (
         <div className={`main`}>
             {
-                myPlayerID && data ?
+                myPlayerID && data && data.currentCards ?
                     <div className={`game`}>
                         <GameBoard
                             board={board}

@@ -118,6 +118,16 @@
     align-items: center;
 }
 
+.deck-wrapper .deck .count {
+    position: absolute;
+}
+
+.deck-wrapper .deck .count span {
+    font-size: 20px;
+    font-weight: 600;
+    color: #fff;
+}
+
 .deck-wrapper .deck img {
     width: 64px;
     height: 87px;
@@ -186,6 +196,14 @@
 
 .control-wrapper .turn-span .turn.can-play {
     opacity: 1;
+}
+
+.control-wrapper .turn-span .turn.can-play.red {
+    background: #dd1a1e;
+}
+
+.control-wrapper .turn-span .turn.can-play.blue {
+    background: #0000ff;
 }
 
 .end-wrapper {
