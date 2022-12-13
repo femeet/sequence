@@ -186,7 +186,6 @@
 .control-wrapper .turn-span .turn {
     margin: 0;
     display: inline-block;
-    background: #27ae60;
     color: #fff;
     font-weight: 700;
     padding: 10px;
@@ -198,11 +197,11 @@
     opacity: 1;
 }
 
-.control-wrapper .turn-span .turn.can-play.red {
+.control-wrapper .turn-span .turn.red {
     background: #dd1a1e;
 }
 
-.control-wrapper .turn-span .turn.can-play.blue {
+.control-wrapper .turn-span .turn.blue {
     background: #0000ff;
 }
 
