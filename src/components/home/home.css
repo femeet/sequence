@@ -11,7 +11,6 @@
 
 .title {
     font-size: xxx-large;
-    font-family: "NotoSerif", serif;
     margin-bottom: 10vh;
 }
 
@@ -24,7 +23,6 @@
     border: 1px solid rgba(255, 255, 255, 0.3);
     color: white;
     font-size: large;
-    font-family: "NotoSerif", serif;
     height: 50px;
     margin-left: 20px;
     padding-left: 10px;
@@ -38,7 +36,6 @@
     color: black;
     display: flex;
     font-size: xx-large;
-    font-family: "NotoSerif", serif;
     align-items: center;
     justify-content: center;
 }
@@ -58,7 +55,6 @@
     border: 1px solid rgba(255, 255, 255, 0.3);
     color: white;
     font-size: large;
-    font-family: "NotoSerif", serif;
 }
 
 #name-input-home::placeholder {
@@ -137,7 +133,7 @@
     align-items: center;
 }
 
-.devs > div > img {
+.devs > div > a > img {
     height: 200px;
     width: 200px;
     border-radius: 100px;
@@ -150,12 +146,15 @@
 .links {
     display: flex;
     gap: 15px;
+    margin-top: 10px;
 }
 
-.links > img {
+.links > a > img {
     height: 30px;
     width: 30px;
     object-fit: contain;
+    filter: invert(100%);
+    cursor: pointer;
 }
 
 .devs > div > h2 {
