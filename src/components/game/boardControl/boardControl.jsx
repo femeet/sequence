@@ -51,7 +51,7 @@ const BoardControl = (props) => {
             
             <div className={`bottom-section`}>
     
-                <div className={`score-wrapper`}>
+                <div className={`score-wrapper ${props.gameEnd ? `ended` : ``}`}>
                     <div className={`team team-red`}>
                         <div className={`name`}>
                             <span className={`player`}>{props.players[1]  + ` ${props.player === 1 ? '(You)' : ''}`}</span>
