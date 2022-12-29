@@ -4,7 +4,7 @@ import {doc, setDoc} from "firebase/firestore";
 import {remaining_cards} from "../../shared/remaining_cards";
 
 import './home.css';
-import {useNavigate} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 
 import background from '../../assets/images/home_background.png';
 import background2 from '../../assets/images/femeetbackground.jpg';
@@ -96,28 +96,29 @@ const Home = () => {
                 Developed at&nbsp;<strong>Carnegie Mellon University</strong>
             </div>
             <div className="full-height-div" style={{ backgroundImage: `url(${background2})`, backgroundSize: "cover", backgroundAttachment: "fixed"}}>
-                <h1 id="title">Meet The Devs:</h1>
+                <h1 id="title">Meet The Devs</h1>
                 <div className="devs">
                     <div>
-                        <img src="https://femindharamshi.com/static/media/favicon.df59357d43584154d3d1.png"/>
+                        <a href={`https://femindharamshi.com/`}>
+                            <img src="https://femindharamshi.com/static/media/favicon.df59357d43584154d3d1.png" alt={`Femin Dharamshi`}/>
+                        </a>
                         <h2>Femin Dharamshi</h2>
-                        <h4>Carnegie Mellon University</h4>
                         <div className="links">
-                            <img src={youtube}/>
-                            <img src={instagram}/>
-                            <img src={github}/>
-                            <img src={linkedin}/>
+                            <a href={`https://www.youtube.com/c/FeminDharamshi`}><img src={youtube} alt={`Femin Youtube`}/></a>
+                            <a href={`https://www.instagram.com/beyondhelloworld/`}><img src={instagram} alt={`Femin Instagram`}/></a>
+                            <a href={`https://github.com/fdharamshi`}><img src={github} alt={`Femin Github`}/></a>
+                            <a href={`https://www.linkedin.com/in/femindharamshi/`}><img src={linkedin} alt={`Femin LinkedIn`}/></a>
                         </div>
                     </div>
                     <div>
-                        <img src="https://avatars.githubusercontent.com/u/26139149?v=4" />
+                        <a href={`https://meetshah.tech`}>
+                            <img src="https://avatars.githubusercontent.com/u/26139149?v=4" alt={`Meet Shah`} />
+                        </a>
                         <h2>Meet Shah</h2>
-                        <h4>Carnegie Mellon University</h4>
                         <div className="links">
-                            <img src={youtube}/>
-                            <img src={instagram}/>
-                            <img src={github}/>
-                            <img src={linkedin}/>
+                            <a href={`https://github.com/meetshah15`}><img src={github} alt={`Meet Github`}/></a>
+                            <a href={`https://www.instagram.com/roaad_runner/`}><img src={instagram} alt={`Femin Instagram`}/></a>
+                            <a href={`https://www.linkedin.com/in/meetshah15/`}><img src={linkedin} alt={`Meet LinkedIn`}/></a>
                         </div>
                     </div>
                 </div>
