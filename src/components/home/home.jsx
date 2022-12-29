@@ -84,21 +84,22 @@ const Home = () => {
     return (
         <div className='home'>
             <div className="ninety-height-div" style={{ backgroundImage: `url(${background})`, backgroundSize: "cover", backgroundAttachment: "fixed"}}>
-                <span className="title">The Sequence Game</span><br/>
-                <div className="name-wrapping-div-home"><input type="text" ref={textRef} placeholder="Enter your name" id="name-input-home"/>
-                    <button className="create-game-button" onClick={() => {
+                <h1 className="title">The Sequence Game</h1>
+                <div className="name-wrapping-div-home">
+                    <input className="box-wrapper" type="text" ref={textRef} placeholder="Enter your name" id="name-input-home"/>
+                    <button className="box-wrapper create-game-button" onClick={() => {
                         setupFirestore();
                     }}>Create a Game
                     </button>
                 </div>
             </div>
             <div className="developed-at" >
-                Developed at&nbsp;<strong>Carnegie Mellon University</strong>
+                <p>Developed at <span className={`bold`}>Carnegie Mellon University</span></p>
             </div>
             <div className="full-height-div" style={{ backgroundImage: `url(${background2})`, backgroundSize: "cover", backgroundAttachment: "fixed"}}>
                 <h1 id="title">Meet The Devs</h1>
                 <div className="devs">
-                    <div>
+                    <div className={`dev1`}>
                         <a href={`https://femindharamshi.com/`}>
                             <img src="https://femindharamshi.com/static/media/favicon.df59357d43584154d3d1.png" alt={`Femin Dharamshi`}/>
                         </a>
@@ -110,7 +111,7 @@ const Home = () => {
                             <a href={`https://www.linkedin.com/in/femindharamshi/`}><img src={linkedin} alt={`Femin LinkedIn`}/></a>
                         </div>
                     </div>
-                    <div>
+                    <div className={`dev2`}>
                         <a href={`https://meetshah.tech`}>
                             <img src="https://avatars.githubusercontent.com/u/26139149?v=4" alt={`Meet Shah`} />
                         </a>

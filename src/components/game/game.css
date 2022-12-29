@@ -22,3 +22,10 @@
     align-items: flex-start;
     margin: 50px;
 }
+
+@media (max-width: 440px) {
+    .game {
+        flex-direction: column;
+        margin: 20px;
+    }
+}
