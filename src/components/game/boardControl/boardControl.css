@@ -95,6 +95,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    width: 100%;
 }
 
 .deck-wrapper .pending {
@@ -212,6 +213,7 @@
     padding: 15px;
     text-align: center;
     color: #fff;
+    width: 100%;
 }
 
 .end-wrapper h3 {
@@ -247,4 +249,87 @@
     border-radius: 5px;
     padding: 5px 10px;
     cursor: pointer;
+}
+
+@media (max-width: 440px) {
+    .control-wrapper {
+        margin: 0;
+        max-width: unset;
+    }
+
+    .player-card {
+        width: 48px;
+        height: 68px;
+    }
+
+    .player-card .card-image {
+        width: 36px;
+    }
+
+    .control-wrapper .content-wrapper .number {
+        font-size: 16px;
+    }
+
+    .control-wrapper .content-wrapper .top-left {
+        top: 2px;
+    }
+
+    .control-wrapper .content-wrapper .bottom-right {
+        bottom: 2px;
+    }
+
+    .control-wrapper .content-wrapper .suit {
+        width: 15px;
+        left: 36% !important;
+    }
+
+    .control-wrapper .turn-span {
+        margin: 8px 0;
+    }
+
+    .control-wrapper .turn-span .turn {
+        padding: 7px;
+        font-size: 13px;
+    }
+
+    .bottom-section {
+        display: flex;
+    }
+
+    .score-wrapper .team .name {
+        width: unset;
+        min-width: 100px;
+        padding: 5px 8px;
+        font-size: 14px;
+        margin-right: 10px;
+    }
+
+    .score-wrapper .team .score {
+        width: 34px;
+        font-size: 16px;
+    }
+
+    .deck-wrapper .pending {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .deck-wrapper .pending .pending-cards {
+        font-size: 10px;
+        width: unset;
+        height: unset;
+        margin-top: 5px;
+    }
+
+    .deck-wrapper .deck {
+        width: 48px;
+        height: 68px;
+    }
+
+    .deck-wrapper .deck img {
+        width: 38px;
+        height: 57px
+    }
 }
