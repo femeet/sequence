@@ -96,7 +96,7 @@ const Home = () => {
                 Developed at&nbsp;<strong>Carnegie Mellon University</strong>
             </div>
             <div className="full-height-div" style={{ backgroundImage: `url(${background2})`, backgroundSize: "cover", backgroundAttachment: "fixed"}}>
-                <h1 id="title">Meet The Devs:</h1>
+                <h1 id="title">Meet The Devs</h1>
                 <div className="devs">
                     <div>
                         <a href={`https://femindharamshi.com/`}>
