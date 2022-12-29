@@ -117,21 +117,21 @@ const JoinGame = () => {
             <div className="jg-link-div">
                 Share Game Link:
                 <div className="jg-link">
-                    {window.location.href}
+                    <span className={`link`}>{window.location.href}</span>
                     <img src={copy} alt={"copy-icon"} onClick={()=>{navigator.clipboard.writeText(window.location.href).then(r => toast.success("Copied to Clipboard"))}} width="20px" height="20px"/>
                 </div>
             </div>
 
             <div className="players-div">
 
-                <div className="player1" style={{border: "2px solid red"}}>
-                    <div style={{fontWeight: "bolder", width: "100%", fontSize: "x-large"}}>Player 1</div>
+                <div className="player red">
+                    <div className={`label`}>Player 1</div>
                     {data["players"][1]}
                     {myPlayerID === 1 && " (You)"}
                 </div>
 
-                <div className="player1" style={{border: "2px solid blue"}}>
-                    <div style={{fontWeight: "bolder", width: "100%", fontSize: "x-large"}}>Player 2</div>
+                <div className="player blue">
+                    <div className={`label`}>Player 2</div>
                     {Object.keys(data["players"]).length > 1 ? data["players"][2] : "Waiting..."}
                     {myPlayerID === 2 && " (You)"}
                 </div>

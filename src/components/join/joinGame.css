@@ -1,5 +1,4 @@
 .jg-main {
-    width: 100vw;
     height: 100vh;
     background: #2c3e50;
     color: white;
@@ -12,33 +11,31 @@
 .jg-wrapper-div {
     width: 80vw;
     height: 80vh;
-    color: black;
     border-radius: 25px;
-    display: inline-flex;
-    flex-wrap: wrap;
     padding: 25px;
-    box-sizing: border-box;
-    align-items: center;
-    justify-content: center;
-
     background-color: rgba(255, 255, 255, .15);
     backdrop-filter: blur(10px);
+}
 
+.jg-wrapper-div .second-player-name-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100%;
 }
 
 .jg-link-div {
-    width: 80vw;
-    box-sizing: border-box;
     font-size: x-large;
     font-weight: bold;
     color: white;
+    margin-bottom: 20px;
 }
 
 .jg-link {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    box-sizing: border-box;
     padding: 10px;
     border: 2px solid black;
     border-radius: 12px;
@@ -46,8 +43,16 @@
     font-size: medium;
     font-weight: normal;
     box-shadow: 0 0 5px gray;
-    /*color: #e74c3c;*/
     color: white;
+}
+
+.jg-link span {
+    max-width: 80%;
+    overflow: scroll;
+}
+
+.jg-link img {
+    filter: invert(1);
 }
 
 .players-div {
@@ -57,17 +62,21 @@
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
+    height: 65%;
 }
 
-.players-div > div {
+.players-div .player {
     flex: 1;
-    background: white;
+    background: red;
     box-sizing: border-box;
     padding: 50px 25px;
-    border: 2px solid black;
     border-radius: 12px;
     text-align: center;
-    box-shadow: 0 0 5px gray;
+    font-size: 24px;
+}
+
+.players-div .player.blue {
+    background: blue;
 }
 
 .start-game-btn {
@@ -79,6 +88,7 @@
     font-size: larger;
     border-radius: 12px;
     padding: 20px;
+    color: white;
 }
 
 .start-game-btn:disabled {
@@ -118,4 +128,13 @@
 }
 
 
+@media screen and (max-width: 440px) {
+    .players-div .player {
+        font-size: 16px;
+    }
 
+    .second-player-name-div button,
+    .second-player-name-div input {
+        width: 100%;
+    }
+}
