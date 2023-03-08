@@ -1,5 +1,5 @@
 import './App.css';
-import React, { Component, useEffect } from "react";
+import React, {Component, useEffect} from "react";
 import {Routes, Route, HashRouter} from 'react-router-dom';
 
 import ControlContext from "./contexts/control-context";
@@ -12,11 +12,11 @@ import Rules from "./components/rules/rules";
 import {Toaster} from "react-hot-toast";
 
 class App extends Component {
-  
+
     state = {
         board: undefined
     }
-    
+
     constructor() {
         super();
         console.log('app starts');
@@ -37,7 +37,7 @@ class App extends Component {
         const {
             board,
         } = this.state;
-        
+
         return (
             <React.Fragment>
                 <Toaster/>
@@ -48,7 +48,7 @@ class App extends Component {
                     >
                     <HashRouter>
                         <Routes>
-                            <Route path={appRoutes.home} element={<Home />}></Route>
+                            <Route path={appRoutes.home} element={<JoinGame />}></Route>
                             <Route path={appRoutes.game} element={<Game />}></Route>
                             <Route path={appRoutes.gameWithID} element={<Game />}></Route>
                             <Route path={appRoutes.joinGame} element={<JoinGame />}></Route>

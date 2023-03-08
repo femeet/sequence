@@ -56,7 +56,9 @@ const Home = () => {
         newGameDoc['scoreMatrix'] = currentBoard;
         newGameDoc['status'] = 0;
 
+        // Randomly generate a 6 digit hex for player ID
         let playerID = Math.floor(Math.random() * 0xFFFFFF).toString(16).padStart(6, '0');
+
         newGameDoc['players'] = {
             playerID: userName
         }
@@ -67,6 +69,9 @@ const Home = () => {
             2: [],
             3: [playerID] // 3 means that player hasn't chosen a team yet
         }
+
+        newGameDoc['gameCreator'] = playerID;
+
 
         // newGameDoc['remaining_cards'] = [...remaining_cards, ...remaining_cards];
 
