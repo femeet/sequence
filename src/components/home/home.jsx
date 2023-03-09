@@ -57,10 +57,10 @@ const Home = () => {
         newGameDoc['status'] = 0;
 
         // Randomly generate a 6 digit hex for player ID
-        let playerID = Math.floor(Math.random() * 0xFFFFFF).toString(16).padStart(6, '0');
+        let playerID = Math.floor(Math.random() * 0xFFFFFF).toString(16).padStart(6, '0').toString();
 
         newGameDoc['players'] = {
-            playerID: userName
+            [playerID]: userName
         }
 
         newGameDoc['teams'] = {

@@ -9,15 +9,19 @@ import background from "../../assets/images/home_background.png";
 
 const JoinGame = () => {
 
-    // const {id} = useParams();
-    //
-    // const [data, setData] = useState(null);
-    //
-    // const [myPlayerID, setMyPlayerID] = useState("");
-    //
-    // const [startDisabled, setStartDisabled] = useState(true);
-    //
-    // const navigate = useNavigate();
+    const {id} = useParams();
+
+    const [data, setData] = useState(null);
+
+    const [myPlayerID, setMyPlayerID] = useState("");
+
+    const [newPlayer, setNewPlayer] = useState(false);
+
+    const [startDisabled, setStartDisabled] = useState(true);
+
+    const [myCurrentTeam, setMyCurrentTeam] = useState(3);
+
+    const navigate = useNavigate();
     //
     // async function start_game() {
     //
@@ -57,107 +61,108 @@ const JoinGame = () => {
     //     navigate(`/game/${id}`)
     // }
     //
-    // function checkIfEqualPlayers() {
-    //     // TODO: Function to get if all teams have equal number of players.
-    //     // Two Teams can have equal players and one team can have empty OR
-    //     // All Teams must have equal players
-    // }
-    //
-    // function changeTeam() {
-    //     // TODO: Function to change a player's team if they choose to click on some team
-    // }
-    //
-    // async function initialCheck(newData) {
-    //
-    //     // TODO: If status is 1 and user ID is either 1 or 2, navigate to game screen.
-    //
-    //     await setData(newData);
-    //
-    //     const gameID = id;
-    //     const playerID = parseInt(window.localStorage.getItem(gameID));
-    //
-    //     // TODO: Check if game ID exists in Local Storage, or if it isn't required.
-    //     if(newData["status"] === 1 && playerID != null) {
-    //         navigate(`/game/${id}`)
-    //     }
-    //
-    //     // if(gameID !== id) {
-    //     //     window.localStorage.clear();
-    //     // }
-    //
-    //     setMyPlayerID(playerID);
-    //
-    //     // if (isNaN(playerID) && Object.keys(newData["players"]).length === 1) {
-    //     //     setPlayer2Joined(true);
-    //     // }
-    //
-    //     // if(Object.keys(newData["players"]).length > 1) {
-    //     //     setStartDisabled(false);
-    //     // }
-    // }
-    //
-    // // async function addPlayer() {
-    // //     window.localStorage.setItem("gameID", id);
-    // //     window.localStorage.setItem("playerID", 2);
-    // //
-    // //     data["players"][2] = textRef.current.value;
-    // //     await setDoc(doc(db, "games", id), data);
-    // //     setPlayer2Joined(false);
-    // // }
-    //
-    // useEffect(() => {
-    //     // TODO: Check if ID from use params is Legit.
-    //     // TODO: Erase local storage ID is mismatch
-    //
-    //     const unsubscribe = onSnapshot(doc(db, "games", id), (doc) => {
-    //         // TODO: Only proceed with checking if the status is 0.
-    //         initialCheck(doc.data());
-    //     });
-    //
-    //     //remember to unsubscribe from your realtime listener on unmount or you will create a memory leak
-    //     return () => unsubscribe()
-    //
-    // }, [])
-    //
-    // const textRef = useRef();
+    function checkIfEqualPlayers() {
+        // Function to get if all teams have equal number of players.
+        if(data != null) {
+            let length1 = data['teams'][0].length;
+            let length2 = data['teams'][1].length;
+            let length3 = data['teams'][2].length;
+            let lobbyLength = data['teams'][3].length;
 
-    const shareUI_old = () => {
+            if(lobbyLength > 0) {
+                return false;
+            }
 
-        return (<>
-            <div className="jg-link-div">
-                Share Game Link:
-                <div className="jg-link">
-                    <span className={`link`}>{window.location.href}</span>
-                    <img src={copy} alt={"copy-icon"} onClick={()=>{navigator.clipboard.writeText(window.location.href).then(r => toast.success("Copied to Clipboard"))}} width="20px" height="20px"/>
-                </div>
-            </div>
+            if( (length1 === 0 && length2 === 0) ||  (length2 === 0 && length2 === 3) || (length1 === 0 && length3 === 0)) {
+                return false;
+            }
 
-            <div className="players-div">
+            return (length1 === 0 && length2 === length3) || (length2 === 0 && length1 === length3) || (length3 === 0 && length1 === length2) || (length1 === length2 && length2 === length3);
 
-                <div className="player red">
-                    <div className={`label`}>Team 1</div>
-                    {/*{data["players"][1]}*/}
-                    {/*{myPlayerID === 1 && " (You)"}*/}
-                </div>
-
-                <div className="player blue">
-                    <div className={`label`}>Team 2</div>
-                    {/*{Object.keys(data["players"]).length > 1 ? data["players"][2] : "Waiting..."}*/}
-                    {/*{myPlayerID === 2 && " (You)"}*/}
-                </div>
-
-                <div className="player blue">
-                    <div className={`label`}>Team 3</div>
-                    {/*{Object.keys(data["players"]).length > 1 ? data["players"][2] : "Waiting..."}*/}
-                    {/*{myPlayerID === 2 && " (You)"}*/}
-                </div>
-
-            </div>
-
-            {/* TODO: Change Start Button - Only show to the owner*/}
-            {/*<button className="start-game-btn" disabled={startDisabled} onClick={()=>{start_game()}}>Start Game</button>*/}
-        </>);
+        } else {
+            return false;
+        }
     }
+
+    async function changeTeam(newTeam) {
+
+        if (myCurrentTeam != newTeam) {
+            let teams = data['teams'];
+            teams[newTeam].push(myPlayerID);
+            teams[myCurrentTeam] = data["teams"][myCurrentTeam].filter(function(item) {
+                return item !== myPlayerID
+            })
+
+            data['teams'] = teams;
+            await setDoc(doc(db, "games", id), data);
+        }
+
+    }
+
+    async function initialCheck(newData) {
+
+        // TODO: If status is 1 and user ID is either 1 or 2, navigate to game screen.
+
+        await setData(newData);
+
+        const gameID = id;
+        const playerID = window.localStorage.getItem(gameID);
+
+        if(newData["status"] === 1 && playerID != null) {
+            navigate(`/game/${id}`)
+        }
+
+        if(playerID != null) {
+            setMyPlayerID(playerID);
+            setNewPlayer(false);
+
+            // Find player's current team
+            for(let key = 0; key < 3; key ++) {
+                newData['teams'][key].forEach(player => {
+                    if(player === playerID) {
+                        setMyCurrentTeam(key);
+                        console.log("Found at "+ key);
+                    }
+                })
+            }
+        } else {
+            setNewPlayer(true);
+        }
+
+        // if (isNaN(playerID) && Object.keys(newData["players"]).length === 1) {
+        //     setPlayer2Joined(true);
+        // }
+
+        // if(Object.keys(newData["players"]).length > 1) {
+        //     setStartDisabled(false);
+        // }
+    }
+
+    async function addPlayer() {
+        // Randomly generate a 6 digit hex for player ID
+        let playerID = Math.floor(Math.random() * 0xFFFFFF).toString(16).padStart(6, '0').toString();
+
+        window.localStorage.setItem(id.toString(), playerID);
+        data['players'][playerID] = textRef.current.value;
+        data['teams'][3].push(playerID);
+        await setDoc(doc(db, "games", id), data);
+    }
+
+    useEffect(() => {
+        // TODO: Check if ID from use params is Legit.
+        // TODO: Erase local storage ID is mismatch
+
+        const unsubscribe = onSnapshot(doc(db, "games", id), (doc) => {
+            // TODO: Only proceed with checking if the status is 0.
+            initialCheck(doc.data());
+        });
+
+        //remember to unsubscribe from your realtime listener on unmount or you will create a memory leak
+        return () => unsubscribe()
+
+    }, [])
+    //
+    const textRef = useRef();
 
     const shareUI = () => {
         return (<>
@@ -168,44 +173,68 @@ const JoinGame = () => {
                     <img src={copy} alt={"copy-icon"} onClick={()=>{navigator.clipboard.writeText(window.location.href).then(r => toast.success("Copied to Clipboard"))}} width="20px" height="20px"/>
                 </div>
 
-                {/* TODO: Only display message if there is a message */}
-                <div className="message">
+                {myCurrentTeam === 3 && <div className="message">
                     Please Join A Team
-                </div>
+                </div>}
 
-                <div class="player">
-                    <div class="header" style={{backgroundColor: "#2d3436"}}>Lobby</div>
-                    <div class="team-contents">
-                        <span>Femin Dharamshi</span>
-                        <span>Meet Shah</span>
+                <div className="player">
+                    <div className="header" style={{backgroundColor: "#2d3436"}}>Lobby</div>
+                    <div className="team-contents">
+                        {
+                            data != null && data["teams"][3].length > 0 && data["teams"][3].map(playerID => {
+                                return <span>{data['players'][playerID]}</span>
+                            })
+                        }
+                        {
+                            (data == null || data["teams"][3].length === 0) && <span className="no-player">Lobby Empty</span>
+                        }
                     </div>
                 </div>
 
                 <div className="teams">
-                    <div className="player">
+                    <div className="player" onClick={()=>{changeTeam(0)}}>
                         <div className="header" style={{backgroundColor: "#c0392b"}}>Team Red</div>
                         <div className="team-contents">
-                            <span>Femin Dharamshi</span>
-                            <span>Meet Shah</span>
+                            {
+                                data != null &&  data["teams"][0].length > 0 && data["teams"][0].map(playerID => {
+                                return <span>{data['players'][playerID]}</span>
+                                })
+                            }
+                            {
+                                (data == null || data["teams"][0].length === 0) && <span className="no-player">No Players Yet</span>
+                            }
                         </div>
                     </div>
-                    <div className="player">
+                    <div className="player" onClick={()=>{changeTeam(1)}}>
                         <div className="header" style={{backgroundColor: "#2980b9"}}>Team Blue</div>
                         <div className="team-contents">
-                            <span>Femin Dharamshi</span>
-                            <span>Meet Shah</span>
+                            {
+                                data != null && data["teams"][1].length > 0 && data["teams"][1].map(playerID => {
+                                    return <span>{data['players'][playerID]}</span>
+                                })
+                            }
+                            {
+                                (data == null || data["teams"][1].length === 0) && <span className="no-player">No Players Yet</span>
+                            }
                         </div>
                     </div>
-                    <div className="player">
+                    <div className="player" onClick={()=>{changeTeam(2)}}>
                         <div className="header" style={{backgroundColor: "#27ae60"}}>Team Green</div>
                         <div className="team-contents">
-                            <span class="no-player">No Players Yet</span>
+                            {
+                                data != null && data["teams"][2].length > 0 && data["teams"][2].map(playerID => {
+                                    return <span>{data['players'][playerID]}</span>
+                                })
+                            }
+                            {
+                                (data == null || data["teams"][2].length === 0) && <span className="no-player">No Players Yet</span>
+                            }
                         </div>
                     </div>
                 </div>
                 <div className="message">
-                    Please wait for Femin to start the game {/* Display to everyone but owner */}
-                    <button class="start-game-button">Start Game</button> {/* Display to owner */}
+                    { data["gameCreator"] !== myPlayerID && `Please wait for ${data['players'][data['gameCreator']]} to start the game`}
+                    { data["gameCreator"] === myPlayerID && <button className="start-game-button" disabled={!checkIfEqualPlayers()}>Start Game</button>}
                 </div>
             </div>
         </>);
@@ -215,8 +244,8 @@ const JoinGame = () => {
         return (<>
             <div className="second-player-name-div">
                 <div>Enter Your Name:</div>
-                <input type="text" placeholder={"Name"}/>
-                {/*<button onClick={() => {addPlayer();}}>Join Game</button>*/}
+                <input type="text" ref={textRef} placeholder={"Name"}/>
+                <button onClick={() => {addPlayer();}}>Join Game</button>
             </div>
         </>);
     }
@@ -225,9 +254,8 @@ const JoinGame = () => {
         <div className="jg-main" style={{ backgroundImage: `url(${background})`, backgroundSize: "cover"}}>
             <div className="jg-wrapper-div">
 
-                {/*{data != null && !player2Joined && shareUI()}*/}
-                {/*{player2Joined && secondPlayerNameUI()}*/}
-                {shareUI()}
+                {data != null && !newPlayer && shareUI()}
+                {newPlayer && secondPlayerNameUI()}
 
             </div>
         </div>
