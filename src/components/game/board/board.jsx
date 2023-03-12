@@ -33,7 +33,7 @@ const GameBoard = (props) => {
                                                                  alt={card.suit}/> : ''
                                                 }
                                                 {
-                                                    card.team && card.team !== -1 ?
+                                                    card.team !== -1 ?
                                                         <div className={`coin`}>
                                                             <img alt={`coin`} src={card.team === 0 ? RedCoin : (card.team === 1 ? BlueCoin : GreenCoin)} />
                                                         </div>
