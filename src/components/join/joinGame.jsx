@@ -69,7 +69,11 @@ const JoinGame = () => {
         // Done: Change status of game to 1
         tempData["status"] = 1
         tempData["currentTeam"] = 0
-        tempData["currentPlayer"] = 0
+        tempData["currentPlayer"] = {
+            0: 0,
+            1: 0,
+            2: 0
+        }
 
         tempData["numberOfTeams"] = 3;
         tempData["skipTeam"] = -1;
