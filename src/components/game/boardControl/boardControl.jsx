@@ -34,8 +34,8 @@ const BoardControl = (props) => {
         <div className={`control-wrapper`}>
             
             <div className={`turn-span`}>
-                <p className={`turn ${props.canplay ? 'can-play': ''} ${props.player === 1 ? 'red' : 'blue'}`}>{
-                    props.canplay ? "Your Turn" : "Opponent's turn"
+                <p className={`turn ${props.canplay ? 'can-play': ''} ${props.currentTeam === 0 ? 'red' : (props.currentTeam === 1? 'blue' : 'green')}`}>{
+                    `${props.players[props.teams[props.currentPlayer[props.currentTeam]]]}'s Turn`
                 }</p>
             </div>
             
@@ -50,7 +50,7 @@ const BoardControl = (props) => {
             </div>
             
             <div className={`bottom-section`}>
-    
+
                 <div className={`score-wrapper ${props.gameEnd ? `ended` : ``}`}>
                     <div className={`team team-red`}>
                         <div className={`name`}>

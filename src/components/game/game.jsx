@@ -15,7 +15,7 @@ const Game = () => {
     const {id} = useParams();
     const [data, setData] = useState(null);
     const [board, setBoard] = useState(Board);
-    const [myPlayerID, setMyPlayerID] = useState(0);
+    const [myPlayerID, setMyPlayerID] = useState("");
     const [lastCard, setLastCard] = useState(null);
     const [showModal, setShowModal] = useState(false);
     const [modal, setModal] = useState(null);
@@ -30,13 +30,13 @@ const Game = () => {
         
             if (((card.position[0][0] === row && card.position[0][1] === col)
                 || (card.position[1][0] === row && card.position[1][1] === col))
-                && board[row][col].team === 0) return card;
+                && board[row][col].team === -1) return card;
         }
     
         // check if jack exists
         for (const card of data.currentCards[myPlayerID]) {
             if (card.number === "J") {
-                if ((card.suit === 'diamond' || card.suit === 'club') && board[row][col].team === 0) {
+                if ((card.suit === 'diamond' || card.suit === 'club') && board[row][col].team === -1) {
                     // valid two-eyed jack attempt
                     setModal({
                         row: row,
@@ -46,9 +46,9 @@ const Game = () => {
                         message: 'Are you sure you want to use Two-Eyed Jack?'
                     })
                     setShowModal(true);
-                } else if ((card.suit === 'spade' || card.suit === 'heart') && board[row][col].team !== 0 && board[row][col].team !== myPlayerID) {
+                } else if ((card.suit === 'spade' || card.suit === 'heart') && board[row][col].team !== -1 && board[row][col].team !== myPlayerID) {
                     // one-eyed jack
-                    if (data.scoreMatrix[row][col].scoreOfTeam !== 0) {
+                    if (data.scoreMatrix[row][col].scoreOfTeam !== -1) {
                         // counted in score. cannot remove this card
                         // show some log with timeout...
                         console.log('cannot play this move..');
@@ -128,7 +128,7 @@ const Game = () => {
     const parseCurrentPlayerCards = (currentBoard, cards) => {
         for (const card of cards) {
             if (card.number !== "J") {
-                if (currentBoard[card.position[0][0]][card.position[0][1]] !== 0
+                if (currentBoard[card.position[0][0]][card.position[0][1]] !== -1
                     && currentBoard[card.position[1][0]][card.position[1][1]]) {
                     card.discard = true;
                 }
@@ -144,7 +144,8 @@ const Game = () => {
             }
         }
     }
-    
+
+    // @MEET TODO: Need to update according to multi player
     const endOfGame = (data) => {
         const winnerId = data.score[1] > data.score[2] ? 1 : 2;
         setGameEnd(winnerId);
@@ -164,14 +165,15 @@ const Game = () => {
      * */
     const executePlay = async (row, col, card) => {
         let newData = {...data};
+        let currentTeam = newData.currentTeam;
     
         if (card.oneEyed) {
             // remove opponent's card from board
-            newData.currentBoard = updateCurrentBoard(row, col, 0);
-            updateLocalBoard(row, col, 0); // is this required?
+            newData.currentBoard = updateCurrentBoard(row, col, -1);
+            updateLocalBoard(row, col, -1); // is this required?
         } else {
-            newData.currentBoard = updateCurrentBoard(row, col, myPlayerID);
-            updateLocalBoard(row, col, myPlayerID); // is this required?
+            newData.currentBoard = updateCurrentBoard(row, col, currentTeam);
+            updateLocalBoard(row, col, currentTeam); // is this required?
         }
     
         let cardIndex = getCardIndex(card);
@@ -182,29 +184,35 @@ const Game = () => {
         newData.lastCardPlayed = card;
         newData.lastCardPlayed.row = row;
         newData.lastCardPlayed.col = col
-        newData.currentPlayer = data.currentPlayer === 1 ? 2 : 1;
+
+        // Update Current Player
+        newData.currentPlayer[currentTeam] = (newData.currentPlayer[currentTeam] + 1) % newData.teams[currentTeam].length;
+        newData.currentTeam = (currentTeam + 1) % 3;
+        if(newData.numberOfTeams === 2 && newData.currentTeam === newData.skipTeam) {
+            newData.currentTeam = (newData.currentTeam + 1) % 3;
+        }
         
         if (!card.oneEyed) {
-            let result = checkForScore(data, row, col, myPlayerID);
+            let result = checkForScore(data, row, col, currentTeam);
             if (result) {
                 result.indexes.forEach(index => {
             
                     // TODO: Do not change for corners!!!
                     newData.scoreMatrix[index.x][index.y] = {
-                        "scoreOfTeam": myPlayerID,
+                        "scoreOfTeam": currentTeam,
                         "direction": result.direction
                     }
                 })
         
                 newData.scoreMatrix[row][col] = {
-                    "scoreOfTeam": myPlayerID,
+                    "scoreOfTeam": currentTeam,
                     "direction": result.direction
                 }
         
-                newData.score[myPlayerID] = newData.score[myPlayerID] + 1;
+                newData.score[currentTeam] = newData.score[currentTeam] + 1;
         
                 // player reached score 2 - end of game!!
-                if (newData.score[myPlayerID] === 2) newData.status = 2;
+                if (newData.score[currentTeam] === 2) newData.status = 2;
             }
         }
     
@@ -225,9 +233,9 @@ const Game = () => {
     }
     
     async function initialCheck(newData) {
-        const playerID = parseInt(window.localStorage.getItem("playerID"));
+        const playerID = window.localStorage.getItem(id);
         await setData(newData);
-        parseCurrentBoard(newData.currentBoard, newData.lastCardPlayed, newData.currentPlayer === playerID);
+        parseCurrentBoard(newData.currentBoard, newData.lastCardPlayed, newData['currentPlayer']['currentTeam'] === playerID);
         setLastCard(newData.lastCardPlayed);
         
         parseCurrentPlayerCards(newData.currentBoard, newData.currentCards[playerID]);
@@ -237,7 +245,7 @@ const Game = () => {
     }
     
     useEffect(() => {
-        const playerID = parseInt(window.localStorage.getItem("playerID"));
+        const playerID = window.localStorage.getItem(id);
         setMyPlayerID(playerID);
         
         const unsubscribe = onSnapshot(doc(db, "games", id), (doc) => {
@@ -245,7 +253,7 @@ const Game = () => {
         });
         return () => unsubscribe()
     }, [])
-    
+
     return (
         <div className={`main`}>
             {
@@ -254,7 +262,7 @@ const Game = () => {
                         <GameBoard
                             board={board}
                             play={play}
-                            canplay={myPlayerID === data.currentPlayer}
+                            canplay={myPlayerID === data.teams[data.currentTeam][data.currentPlayer[data.currentTeam]]}
                             gameEnd={gameEnd}
                         />
                         <BoardControl
@@ -263,9 +271,11 @@ const Game = () => {
                             cards={data.currentCards}
                             remainingCards={data.remainingCards.length}
                             player={myPlayerID}
+                            currentTeam={data.currentTeam}
+                            teams={data.teams}
                             currentPlayer={data.currentPlayer}
                             lastCard={lastCard}
-                            canplay={myPlayerID === data.currentPlayer}
+                            canplay={myPlayerID === data.teams[data.currentTeam][data.currentPlayer[data.currentTeam]]}
                             discardCard={discardCard}
                             gameEnd={gameEnd}
                             reset={reStartGame}

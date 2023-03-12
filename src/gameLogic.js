@@ -145,7 +145,7 @@ const recursive = (snapshot, x, y, direction, teamNumber) => {
         return 0;
     }
 
-    // TODO: 4. Directional Constraints for already in score.
+    // Directional Constraints for already in score.
     // 1. Cannot be horizontal while checking l and r
     if(snapshot["scoreMatrix"][x][y].direction === "horizontal" && (direction==="l" || direction==="r")) {
         return 0;

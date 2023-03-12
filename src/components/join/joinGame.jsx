@@ -184,7 +184,6 @@ const JoinGame = () => {
 
     useEffect(() => {
         // TODO: Check if ID from use params is Legit.
-        // TODO: Erase local storage ID is mismatch
 
         const unsubscribe = onSnapshot(doc(db, "games", id), (doc) => {
             // TODO: Only proceed with checking if the status is 0.

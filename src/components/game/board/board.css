@@ -48,6 +48,10 @@
     background: #0000ff;
 }
 
+.card .content .overlay.green {
+    background: #00ff00;
+}
+
 .card .content .suit-wrapper .club {
     background: url("../../../assets/images/club.png") no-repeat;
 }

@@ -1,6 +1,7 @@
 import './board.css';
 import RedCoin from "../../../assets/images/red-coin.png";
 import BlueCoin from "../../../assets/images/blue-coin.png";
+import GreenCoin from "../../../assets/images/green-coin.png";
 
 const GameBoard = (props) => {
     return (
@@ -32,15 +33,15 @@ const GameBoard = (props) => {
                                                                  alt={card.suit}/> : ''
                                                 }
                                                 {
-                                                    card.team && card.team !== 0 ?
+                                                    card.team && card.team !== -1 ?
                                                         <div className={`coin`}>
-                                                            <img alt={`coin`} src={card.team === 1 ? RedCoin : BlueCoin} />
+                                                            <img alt={`coin`} src={card.team === 0 ? RedCoin : (card.team === 1 ? BlueCoin : GreenCoin)} />
                                                         </div>
                                                     : ''
                                                 }
                                                 {
                                                     card.overlay ?
-                                                        <div className={`overlay ${card.team === 1 ? `red` : `blue`}`}>
+                                                        <div className={`overlay ${card.team === 0 ? `red` : (card.team === 1 ? 'blue' : 'green')}`}>
                                                     </div> : null
                                                 }
                                             </div>

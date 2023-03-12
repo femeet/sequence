@@ -35,7 +35,7 @@ const Home = () => {
         for (let i = 0; i < 10; i++) {
             let temp = [];
             for (let j = 0; j < 10; j++) {
-                temp.push(0);
+                temp.push(-1);
             }
             currentBoard[i] = temp;
         }
@@ -47,7 +47,7 @@ const Home = () => {
             let temp = [];
             for (let j = 0; j < 10; j++) {
                 temp.push({
-                    "scoreOfTeam": 0
+                    "scoreOfTeam": -1
                 });
             }
             currentBoard[i] = temp;
@@ -86,11 +86,10 @@ const Home = () => {
         await setDoc(doc(db, "games", gameID), newGameDoc);
 
         // Save game ID, and player number in the localstorage
-        // TODO: Change this structure and combine it. (Like a dictionary)
+        // Done: Change this structure and combine it. (Like a dictionary)
         window.localStorage.setItem(gameID.toString(), playerID);
         // window.localStorage.setItem("playerID", 1);
 
-        // TODO: Go to game screen with Status 0 (To wait for other players)
         navigator(`/joinGame/${gameID}`)
     }
 
