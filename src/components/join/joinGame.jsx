@@ -7,6 +7,7 @@ import copy from '../../assets/copy.png';
 import toast from "react-hot-toast";
 import background from "../../assets/images/home_background.png";
 
+// TODO: Cap total Number of players to 12 -> Display a message "Lobby Full"
 const JoinGame = () => {
 
     const {id} = useParams();
@@ -22,45 +23,82 @@ const JoinGame = () => {
     const [myCurrentTeam, setMyCurrentTeam] = useState(3);
 
     const navigate = useNavigate();
-    //
-    // async function start_game() {
-    //
-    //     // Done: Run only if two players exist
-    //     if(Object.keys(data["players"]).length < 2) {
-    //         return;
-    //     }
-    //
-    //     // Allocate n cards to each player (update Firestore)
-    //     let n = 6;
-    //     var tempData = {...data};
-    //     var currentCards = {}
-    //     for(let i = 1; i <= Object.keys(data["players"]).length; i ++) {
-    //         currentCards[i.toString()] = []
-    //         for(let j = 0; j < n; j++) {
-    //             const randomInt = Math.floor(Math.random() * tempData['remainingCards'].length);
-    //             currentCards[i.toString()].push(tempData['remainingCards'][randomInt]);
-    //             tempData['remainingCards'].splice(randomInt, 1);
-    //         }
-    //     }
-    //     tempData["currentCards"] = currentCards;
-    //
-    //     // Done: Change status of game to 1
-    //     tempData["status"] = 1
-    //     tempData["currentPlayer"] = 1
-    //
-    //     tempData["score"] = {
-    //         1: 0,
-    //         2: 0
-    //     }
-    //
-    //     // Done: Update Firebase
-    //     await setDoc(doc(db, "games", id), tempData);
-    //     // alert("Firestore updated. Game Started.");
-    //
-    //     // Done: Navigate to board page
-    //     navigate(`/game/${id}`)
-    // }
-    //
+
+    function findNumberOfCardsDealt (players) {
+        // For 2 players 7 cards each
+        // For 3 players 6 cards each
+        // For 4 players 6 cards each
+        // For 6 players 5 cards each
+        // For 8 players 4 cards each
+        // For 9 players 4 cards each
+        // For 10 players 3 cards each
+        // For 12 players 3 cards each
+        if( players < 6) {
+            return 6;
+        } else if (players === 6) {
+            return 5;
+        } else if (players <= 9) {
+            return 4;
+        } else {
+            return 3;
+        }
+    }
+
+    async function start_game() {
+
+        // Run only if teams are valid
+        if(!checkIfEqualPlayers()) {
+            return;
+        }
+
+        var tempData = {...data};
+
+        // Allocate n cards to each player (update Firestore)
+        let n = findNumberOfCardsDealt(Object.keys(tempData['players']).length);
+        var currentCards = {}
+        for (let key of Object.keys(data['players'])) {
+            currentCards[key.toString()] = []
+            for(let j = 0; j < n; j++) {
+                const randomInt = Math.floor(Math.random() * tempData['remainingCards'].length);
+                currentCards[key.toString()].push(tempData['remainingCards'][randomInt]);
+                tempData['remainingCards'].splice(randomInt, 1);
+            }
+        }
+        tempData["currentCards"] = currentCards;
+
+        // Done: Change status of game to 1
+        tempData["status"] = 1
+        tempData["currentTeam"] = 0
+        tempData["currentPlayer"] = 0
+
+        tempData["numberOfTeams"] = 3;
+        tempData["skipTeam"] = -1;
+        if(tempData["teams"][0] === 0 || tempData["teams"][1] === 0 || tempData["teams"][2] === 0) {
+            tempData["numberOfTeams"] = 2;
+
+            if(tempData["teams"][0] === 0) {
+                tempData["skipTeam"] = 0;
+            } else if (tempData["teams"][1] === 0) {
+                tempData["skipTeam"] = 1;
+            } else {
+                tempData["skipTeam"] = 2;
+            }
+        }
+
+        tempData["score"] = {
+            1: 0,
+            2: 0,
+            3: 0
+        }
+
+        // Done: Update Firebase
+        await setDoc(doc(db, "games", id), tempData);
+        // alert("Firestore updated. Game Started.");
+
+        // Done: Navigate to board page
+        navigate(`/game/${id}`)
+    }
+
     function checkIfEqualPlayers() {
         // Function to get if all teams have equal number of players.
         if(data != null) {
@@ -86,7 +124,7 @@ const JoinGame = () => {
 
     async function changeTeam(newTeam) {
 
-        if (myCurrentTeam != newTeam) {
+        if (myCurrentTeam !== newTeam) {
             let teams = data['teams'];
             teams[newTeam].push(myPlayerID);
             teams[myCurrentTeam] = data["teams"][myCurrentTeam].filter(function(item) {
@@ -128,14 +166,6 @@ const JoinGame = () => {
         } else {
             setNewPlayer(true);
         }
-
-        // if (isNaN(playerID) && Object.keys(newData["players"]).length === 1) {
-        //     setPlayer2Joined(true);
-        // }
-
-        // if(Object.keys(newData["players"]).length > 1) {
-        //     setStartDisabled(false);
-        // }
     }
 
     async function addPlayer() {
@@ -234,7 +264,7 @@ const JoinGame = () => {
                 </div>
                 <div className="message">
                     { data["gameCreator"] !== myPlayerID && `Please wait for ${data['players'][data['gameCreator']]} to start the game`}
-                    { data["gameCreator"] === myPlayerID && <button className="start-game-button" disabled={!checkIfEqualPlayers()}>Start Game</button>}
+                    { data["gameCreator"] === myPlayerID && <button className="start-game-button" onClick={start_game} disabled={!checkIfEqualPlayers()}>Start Game</button>}
                 </div>
             </div>
         </>);
