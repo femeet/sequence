@@ -46,7 +46,7 @@ const Game = () => {
                         message: 'Are you sure you want to use Two-Eyed Jack?'
                     })
                     setShowModal(true);
-                } else if ((card.suit === 'spade' || card.suit === 'heart') && board[row][col].team !== -1 && board[row][col].team !== myPlayerID) {
+                } else if ((card.suit === 'spade' || card.suit === 'heart') && board[row][col].team !== -1 && board[row][col].team !== data['currentTeam']) {
                     // one-eyed jack
                     if (data.scoreMatrix[row][col].scoreOfTeam !== -1) {
                         // counted in score. cannot remove this card

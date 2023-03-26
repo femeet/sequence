@@ -4,14 +4,16 @@ import {Suits} from "../../../shared/board";
 import Deck from "../../../assets/images/deck.png";
 
 import Delete from "../../../assets/icons/delete.png";
+import {useState} from "react";
 
 const Card = (c) => {
     return (
         <div className={`player-card`}>
             {
                 c.card.image ?
-                    <img src={face_cards_image[c.card.number][c.card.suit]} className={`card-image`} alt={c.card.suit}></img>
-                    : 
+                    <img src={face_cards_image[c.card.number][c.card.suit]} className={`card-image`}
+                         alt={c.card.suit}></img>
+                    :
                     <div className={`content-wrapper`}>
                         <span className={c.card.suit + ` number top-left`}>{c.card.number}</span>
                         <span className={c.card.suit + ` number bottom-right`}>{c.card.number}</span>
@@ -30,42 +32,89 @@ const Card = (c) => {
 }
 
 const BoardControl = (props) => {
+
+    const [teamRedDropdown, setTeamRedDropdown] = useState(false);
+    const [teamBlueDropdown, setTeamBlueDropdown] = useState(false);
+    const [teamGreenDropDown, setTeamGreenDropdown] = useState(false);
+
     return (
         <div className={`control-wrapper`}>
-            
+
             <div className={`turn-span`}>
-                <p className={`turn ${props.canplay ? 'can-play': ''} ${props.currentTeam === 0 ? 'red' : (props.currentTeam === 1? 'blue' : 'green')}`}>{
+                <p className={`turn ${props.canplay ? 'can-play' : ''} ${props.currentTeam === 0 ? 'red' : (props.currentTeam === 1 ? 'blue' : 'green')}`}>{
                     `${props.players[props.teams[props.currentPlayer[props.currentTeam]]]}'s Turn`
                 }</p>
             </div>
-            
+
             <div className={`current-cards`}>
                 {
                     props.cards[props.player].map((card, id) => {
                         return (
-                            <Card discard={props.discardCard} card={card} key={id} />
+                            <Card discard={props.discardCard} card={card} key={id}/>
                         )
                     })
                 }
             </div>
-            
-            <div className={`bottom-section`}>
 
+            <div className={`bottom-section`}>
+                {/* @MEET TODO: Add dropdown to indicate it's clickable*/}
                 <div className={`score-wrapper ${props.gameEnd ? `ended` : ``}`}>
-                    <div className={`team team-red`}>
+                    <div className={`team team-red`} onClick={() => {
+                        setTeamRedDropdown(!teamRedDropdown);
+                    }}>
                         <div className={`name`}>
-                            <span className={`player`}>{props.players[1]  + ` ${props.player === 1 ? '(You)' : ''}`}</span>
+                            <span className={`team-name`}>Team Red</span>
+                            {
+                                teamRedDropdown &&
+                                <div className={'players'}>
+                                    {
+                                        props.teams[0].map((player) => {
+                                            return <span className={`player`}>{props.players[player]} {props.player === player? ' (You)' : ""}</span>;
+                                        })
+                                    }
+                                </div>
+                            }
                         </div>
                         <span className={`score`}>{props.scores[1]}</span>
                     </div>
-                    <div className={`team team-blue`}>
+                    <div className={`team team-blue`} onClick={() => {
+                        setTeamBlueDropdown(!teamBlueDropdown);
+                    }}>
                         <div className={`name`}>
-                            <span className={`player`}>{props.players[2]  + ` ${props.player === 2 ? '(You)' : ''}`}</span>
+                            <span className={`team-name`}>Team Blue</span>
+                            {
+                                teamBlueDropdown &&
+                                <div className={'players'}>
+                                    {
+                                        props.teams[1].map((player) => {
+                                            return <span className={`player`}>{props.players[player]} {props.player === player? ' (You)' : ""}</span>;
+                                        })
+                                    }
+                                </div>
+                            }
+                        </div>
+                        <span className={`score`}>{props.scores[2]}</span>
+                    </div>
+                    <div className={`team team-green`} onClick={() => {
+                        setTeamGreenDropdown(!teamGreenDropDown);
+                    }}>
+                        <div className={`name`}>
+                            <span className={`team-name`}>Team Green</span>
+                            {
+                                teamGreenDropDown &&
+                                <div className={'players'}>
+                                    {
+                                        props.teams[2].map((player) => {
+                                            return <span className={`player`}>{props.players[player]} {props.player === player? ' (You)' : ""}</span>;
+                                        })
+                                    }
+                                </div>
+                            }
                         </div>
                         <span className={`score`}>{props.scores[2]}</span>
                     </div>
                 </div>
-    
+
                 {
                     !props.gameEnd ?
                         <div className={`deck-wrapper`}>
@@ -81,7 +130,7 @@ const BoardControl = (props) => {
                             <div className={`pending`}>
                                 <p className={`pending-cards`}>Last Card Played</p>
                                 {
-                                    props.lastCard ? <Card card={props.lastCard} /> : <div className={`deck`}></div>
+                                    props.lastCard ? <Card card={props.lastCard}/> : <div className={`deck`}></div>
                                 }
                             </div>
                         </div>
@@ -99,7 +148,7 @@ const BoardControl = (props) => {
                             <button onClick={() => props.reset()} className={`restart`}>Restart</button>
                         </div>
                 }
-                
+
             </div>
         </div>
     )
