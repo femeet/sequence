@@ -128,8 +128,9 @@ const Game = () => {
     const parseCurrentPlayerCards = (currentBoard, cards) => {
         for (const card of cards) {
             if (card.number !== "J") {
+                card.discard = false;
                 if (currentBoard[card.position[0][0]][card.position[0][1]] !== -1
-                    && currentBoard[card.position[1][0]][card.position[1][1]]) {
+                    && currentBoard[card.position[1][0]][card.position[1][1]] !== -1) {
                     card.discard = true;
                 }
             }
