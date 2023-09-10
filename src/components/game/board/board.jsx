@@ -5,7 +5,7 @@ import GreenCoin from "../../../assets/images/green-coin.png";
 
 const GameBoard = (props) => {
     return (
-        <div className={`board-wrapper ${props.canplay ? `` : `no-play`} ${props.gameEnd ? `end-game` : ``}`}>
+        <div className={`board-wrapper ${props.canplay ? `` : `no-play`} ${props.gameEnd !== -1 ? `end-game` : ``}`}>
             {
                 props.board.map((row, id) => {
                     return (

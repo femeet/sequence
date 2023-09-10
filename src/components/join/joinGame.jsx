@@ -77,12 +77,12 @@ const JoinGame = () => {
 
         tempData["numberOfTeams"] = 3;
         tempData["skipTeam"] = -1;
-        if(tempData["teams"][0] === 0 || tempData["teams"][1] === 0 || tempData["teams"][2] === 0) {
+        if(tempData["teams"][0].length === 0 || tempData["teams"][1].length === 0 || tempData["teams"][2].length === 0) {
             tempData["numberOfTeams"] = 2;
 
-            if(tempData["teams"][0] === 0) {
+            if(tempData["teams"][0].length === 0) {
                 tempData["skipTeam"] = 0;
-            } else if (tempData["teams"][1] === 0) {
+            } else if (tempData["teams"][1].length === 0) {
                 tempData["skipTeam"] = 1;
             } else {
                 tempData["skipTeam"] = 2;
@@ -90,9 +90,9 @@ const JoinGame = () => {
         }
 
         tempData["score"] = {
+            0: 0,
             1: 0,
-            2: 0,
-            3: 0
+            2: 0
         }
 
         // Done: Update Firebase

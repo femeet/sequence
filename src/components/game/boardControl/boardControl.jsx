@@ -5,6 +5,7 @@ import Deck from "../../../assets/images/deck.png";
 
 import Delete from "../../../assets/icons/delete.png";
 import {useState} from "react";
+import {TeamMappings} from "../../../utils/constants";
 
 const Card = (c) => {
     return (
@@ -42,7 +43,7 @@ const BoardControl = (props) => {
 
             <div className={`turn-span`}>
                 <p className={`turn ${props.canplay ? 'can-play' : ''} ${props.currentTeam === 0 ? 'red' : (props.currentTeam === 1 ? 'blue' : 'green')}`}>{
-                    `${props.players[props.teams[props.currentPlayer[props.currentTeam]]]}'s Turn`
+                    `${props.players[props.teams[props.currentTeam][props.currentPlayer[props.currentTeam]]]}'s Turn`
                 }</p>
             </div>
 
@@ -58,8 +59,8 @@ const BoardControl = (props) => {
 
             <div className={`bottom-section`}>
                 {/* @MEET TODO: Add dropdown to indicate it's clickable*/}
-                <div className={`score-wrapper ${props.gameEnd ? `ended` : ``}`}>
-                    <div className={`team team-red`} onClick={() => {
+                <div className={`score-wrapper ${props.gameEnd !== -1? `ended` : ``}`}>
+                    {props.skipTeam !== 0 && <div className={`team team-red`} onClick={() => {
                         setTeamRedDropdown(!teamRedDropdown);
                     }}>
                         <div className={`name`}>
@@ -75,9 +76,9 @@ const BoardControl = (props) => {
                                 </div>
                             }
                         </div>
-                        <span className={`score`}>{props.scores[1]}</span>
-                    </div>
-                    <div className={`team team-blue`} onClick={() => {
+                        <span className={`score`}>{props.scores[0]}</span>
+                    </div>}
+                    {props.skipTeam !== 1 && <div className={`team team-blue`} onClick={() => {
                         setTeamBlueDropdown(!teamBlueDropdown);
                     }}>
                         <div className={`name`}>
@@ -93,9 +94,9 @@ const BoardControl = (props) => {
                                 </div>
                             }
                         </div>
-                        <span className={`score`}>{props.scores[2]}</span>
-                    </div>
-                    <div className={`team team-green`} onClick={() => {
+                        <span className={`score`}>{props.scores[1]}</span>
+                    </div>}
+                    {props.skipTeam !== 2 && <div className={`team team-green`} onClick={() => {
                         setTeamGreenDropdown(!teamGreenDropDown);
                     }}>
                         <div className={`name`}>
@@ -112,11 +113,11 @@ const BoardControl = (props) => {
                             }
                         </div>
                         <span className={`score`}>{props.scores[2]}</span>
-                    </div>
+                    </div>}
                 </div>
 
                 {
-                    !props.gameEnd ?
+                    !(props.gameEnd !== -1)?
                         <div className={`deck-wrapper`}>
                             <div className={`pending`}>
                                 <p className={`pending-cards`}>Remaining Cards in Deck</p>
@@ -137,13 +138,8 @@ const BoardControl = (props) => {
                         :
                         <div className={`end-wrapper`}>
                             <h3>Game Over!!!</h3>
-                            <div className={`scores`}>
-                                <span className={`red`}>{props.players[1]}</span>
-                                <span className={`score`}>{props.scores[1] + ` - ` + props.scores[2]}</span>
-                                <span className={`blue`}>{props.players[2]}</span>
-                            </div>
                             <p className={`message`}>
-                                {props.players[props.gameEnd]} won the game!<br/> Would you like a re-match?
+                                <span style={{color: TeamMappings[props.gameEnd]}}>Team {TeamMappings[props.gameEnd]}</span> won the game!<br/> Would you like a re-match?
                             </p>
                             <button onClick={() => props.reset()} className={`restart`}>Restart</button>
                         </div>

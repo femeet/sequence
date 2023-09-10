@@ -19,7 +19,7 @@ const Game = () => {
     const [lastCard, setLastCard] = useState(null);
     const [showModal, setShowModal] = useState(false);
     const [modal, setModal] = useState(null);
-    const [gameEnd, setGameEnd] = useState(0);
+    const [gameEnd, setGameEnd] = useState(-1);
     
     const canPlay = (row, col) => {
         
@@ -148,13 +148,18 @@ const Game = () => {
     // @MEET TODO: Need to update according to multi player
     const endOfGame = (data) => {
         const winnerId = data.score[1] > data.score[2] ? 1 : 2;
-        setGameEnd(winnerId);
+        // const winnerTeam = data.score.indexOf(2);
+        const winnerTeam = Object.keys(data.score).find(key => data.score[key] === 2);
+        if(winnerTeam != undefined) {
+            setGameEnd(parseInt(winnerTeam));
+        }
+
     }
     
     const reStartGame = async () => {
         await resetGame(id);
         setBoard(Board);
-        setGameEnd(0);
+        setGameEnd(-1);
     }
     
     /**
@@ -241,7 +246,7 @@ const Game = () => {
         parseCurrentPlayerCards(newData.currentBoard, newData.currentCards[playerID]);
         
         if (newData.status === 2) endOfGame(newData)
-        else setGameEnd(0);
+        else setGameEnd(-1);
     }
     
     useEffect(() => {
@@ -278,6 +283,7 @@ const Game = () => {
                             canplay={myPlayerID === data.teams[data.currentTeam][data.currentPlayer[data.currentTeam]]}
                             discardCard={discardCard}
                             gameEnd={gameEnd}
+                            skipTeam={data.skipTeam}
                             reset={reStartGame}
                         />
                         <div className={`user-prompt`}>

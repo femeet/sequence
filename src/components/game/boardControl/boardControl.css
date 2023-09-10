@@ -174,7 +174,7 @@
 
 .score-wrapper .team .score {
     width: 40px;
-    background: #c0392b;
+    background: #DD1A1E;
     border-radius: 10px;
     display: flex;
     justify-content: center;
@@ -257,6 +257,11 @@
 }
 
 .end-wrapper .message {
+    font-size: 18px;
+    line-height: 26px;
+}
+
+.end-wrapper .message span {
     font-size: 18px;
     line-height: 26px;
 }
