@@ -8,13 +8,10 @@ import { Link, useNavigate } from "react-router-dom";
 
 import background from '../../assets/images/home_background.png';
 import background2 from '../../assets/images/femeetbackground.jpg';
-
 import youtube from '../../assets/icons/youtube.png';
 import linkedin from '../../assets/icons/linkedin.png';
 import instagram from '../../assets/icons/instagram.png';
 import github from '../../assets/icons/github.png';
-import toast from "react-hot-toast";
-
 
 const Home = () => {
 
