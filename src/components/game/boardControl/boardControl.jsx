@@ -64,7 +64,7 @@ const BoardControl = (props) => {
                         setTeamRedDropdown(!teamRedDropdown);
                     }}>
                         <div className={`name`}>
-                            <span className={`team-name`}>Team Red</span>
+                            <span className={`team-name`}>Team Red<span className={"drop-down-arrow"}>{teamRedDropdown ? '▲' : '▼'}</span></span>
                             {
                                 teamRedDropdown &&
                                 <div className={'players'}>
@@ -82,7 +82,7 @@ const BoardControl = (props) => {
                         setTeamBlueDropdown(!teamBlueDropdown);
                     }}>
                         <div className={`name`}>
-                            <span className={`team-name`}>Team Blue</span>
+                            <span className={`team-name`}>Team Blue<span className={"drop-down-arrow"}>{teamBlueDropdown ? '▲' : '▼'}</span></span>
                             {
                                 teamBlueDropdown &&
                                 <div className={'players'}>
@@ -100,7 +100,7 @@ const BoardControl = (props) => {
                         setTeamGreenDropdown(!teamGreenDropDown);
                     }}>
                         <div className={`name`}>
-                            <span className={`team-name`}>Team Green</span>
+                            <span className={`team-name`}>Team Green<span className={"drop-down-arrow"}>{teamGreenDropDown ? '▲' : '▼'}</span></span>
                             {
                                 teamGreenDropDown &&
                                 <div className={'players'}>
