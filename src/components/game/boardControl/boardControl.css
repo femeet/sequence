@@ -151,6 +151,7 @@
     display: flex;
     margin-bottom: 10px;
     font-weight: 500;
+    cursor: pointer;
 }
 
 .score-wrapper .team .name {
@@ -161,6 +162,24 @@
     color: #fff;
     margin-right: 15px;
     font-size: 17px;
+}
+
+.score-wrapper .team .team-name {
+    font-weight: bolder;
+    position: relative;
+    display: inline-block;
+    width: 180px;
+}
+
+.score-wrapper .team .team-name .drop-down-arrow {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.score-wrapper .team .players {
+    transition: all 2s;
 }
 
 .score-wrapper .team .score {
@@ -176,7 +195,12 @@
 
 .score-wrapper .team.team-blue .name,
 .score-wrapper .team.team-blue .score {
-    background: #0000ff;
+    background: #2980b9;
+}
+
+.score-wrapper .team.team-green .name,
+.score-wrapper .team.team-green .score {
+    background: #27ae60;
 }
 
 .control-wrapper .turn-span {
@@ -203,7 +227,11 @@
 }
 
 .control-wrapper .turn-span .turn.blue {
-    background: #0000ff;
+    background: #2980b9;
+}
+
+.control-wrapper .turn-span .turn.green {
+    background: #27ae60;
 }
 
 .end-wrapper {
@@ -239,6 +267,11 @@
 }
 
 .end-wrapper .message {
+    font-size: 18px;
+    line-height: 26px;
+}
+
+.end-wrapper .message span {
     font-size: 18px;
     line-height: 26px;
 }

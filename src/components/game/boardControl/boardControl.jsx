@@ -4,14 +4,17 @@ import {Suits} from "../../../shared/board";
 import Deck from "../../../assets/images/deck.png";
 
 import Delete from "../../../assets/icons/delete.png";
+import {useState} from "react";
+import {TeamMappings} from "../../../utils/constants";
 
 const Card = (c) => {
     return (
         <div className={`player-card`}>
             {
                 c.card.image ?
-                    <img src={face_cards_image[c.card.number][c.card.suit]} className={`card-image`} alt={c.card.suit}></img>
-                    : 
+                    <img src={face_cards_image[c.card.number][c.card.suit]} className={`card-image`}
+                         alt={c.card.suit}></img>
+                    :
                     <div className={`content-wrapper`}>
                         <span className={c.card.suit + ` number top-left`}>{c.card.number}</span>
                         <span className={c.card.suit + ` number bottom-right`}>{c.card.number}</span>
@@ -30,44 +33,91 @@ const Card = (c) => {
 }
 
 const BoardControl = (props) => {
+
+    const [teamRedDropdown, setTeamRedDropdown] = useState(false);
+    const [teamBlueDropdown, setTeamBlueDropdown] = useState(false);
+    const [teamGreenDropDown, setTeamGreenDropdown] = useState(false);
+
     return (
         <div className={`control-wrapper`}>
-            
+
             <div className={`turn-span`}>
-                <p className={`turn ${props.canplay ? 'can-play': ''} ${props.player === 1 ? 'red' : 'blue'}`}>{
-                    props.canplay ? "Your Turn" : "Opponent's turn"
+                <p className={`turn ${props.canplay ? 'can-play' : ''} ${props.currentTeam === 0 ? 'red' : (props.currentTeam === 1 ? 'blue' : 'green')}`}>{
+                    `${props.players[props.teams[props.currentTeam][props.currentPlayer[props.currentTeam]]]}'s Turn`
                 }</p>
             </div>
-            
+
             <div className={`current-cards`}>
                 {
                     props.cards[props.player].map((card, id) => {
                         return (
-                            <Card discard={props.discardCard} card={card} key={id} />
+                            <Card discard={props.discardCard} card={card} key={id}/>
                         )
                     })
                 }
             </div>
-            
+
             <div className={`bottom-section`}>
-    
-                <div className={`score-wrapper ${props.gameEnd ? `ended` : ``}`}>
-                    <div className={`team team-red`}>
+                {/* @MEET TODO: Add dropdown to indicate it's clickable*/}
+                <div className={`score-wrapper ${props.gameEnd !== -1? `ended` : ``}`}>
+                    {props.skipTeam !== 0 && <div className={`team team-red`} onClick={() => {
+                        setTeamRedDropdown(!teamRedDropdown);
+                    }}>
                         <div className={`name`}>
-                            <span className={`player`}>{props.players[1]  + ` ${props.player === 1 ? '(You)' : ''}`}</span>
+                            <span className={`team-name`}>Team Red<span className={"drop-down-arrow"}>{teamRedDropdown ? '▲' : '▼'}</span></span>
+                            {
+                                teamRedDropdown &&
+                                <div className={'players'}>
+                                    {
+                                        props.teams[0].map((player) => {
+                                            return <span className={`player`}>{props.players[player]} {props.player === player? ' (You)' : ""}</span>;
+                                        })
+                                    }
+                                </div>
+                            }
+                        </div>
+                        <span className={`score`}>{props.scores[0]}</span>
+                    </div>}
+                    {props.skipTeam !== 1 && <div className={`team team-blue`} onClick={() => {
+                        setTeamBlueDropdown(!teamBlueDropdown);
+                    }}>
+                        <div className={`name`}>
+                            <span className={`team-name`}>Team Blue<span className={"drop-down-arrow"}>{teamBlueDropdown ? '▲' : '▼'}</span></span>
+                            {
+                                teamBlueDropdown &&
+                                <div className={'players'}>
+                                    {
+                                        props.teams[1].map((player) => {
+                                            return <span className={`player`}>{props.players[player]} {props.player === player? ' (You)' : ""}</span>;
+                                        })
+                                    }
+                                </div>
+                            }
                         </div>
                         <span className={`score`}>{props.scores[1]}</span>
-                    </div>
-                    <div className={`team team-blue`}>
+                    </div>}
+                    {props.skipTeam !== 2 && <div className={`team team-green`} onClick={() => {
+                        setTeamGreenDropdown(!teamGreenDropDown);
+                    }}>
                         <div className={`name`}>
-                            <span className={`player`}>{props.players[2]  + ` ${props.player === 2 ? '(You)' : ''}`}</span>
+                            <span className={`team-name`}>Team Green<span className={"drop-down-arrow"}>{teamGreenDropDown ? '▲' : '▼'}</span></span>
+                            {
+                                teamGreenDropDown &&
+                                <div className={'players'}>
+                                    {
+                                        props.teams[2].map((player) => {
+                                            return <span className={`player`}>{props.players[player]} {props.player === player? ' (You)' : ""}</span>;
+                                        })
+                                    }
+                                </div>
+                            }
                         </div>
                         <span className={`score`}>{props.scores[2]}</span>
-                    </div>
+                    </div>}
                 </div>
-    
+
                 {
-                    !props.gameEnd ?
+                    !(props.gameEnd !== -1)?
                         <div className={`deck-wrapper`}>
                             <div className={`pending`}>
                                 <p className={`pending-cards`}>Remaining Cards in Deck</p>
@@ -81,25 +131,20 @@ const BoardControl = (props) => {
                             <div className={`pending`}>
                                 <p className={`pending-cards`}>Last Card Played</p>
                                 {
-                                    props.lastCard ? <Card card={props.lastCard} /> : <div className={`deck`}></div>
+                                    props.lastCard ? <Card card={props.lastCard}/> : <div className={`deck`}></div>
                                 }
                             </div>
                         </div>
                         :
                         <div className={`end-wrapper`}>
                             <h3>Game Over!!!</h3>
-                            <div className={`scores`}>
-                                <span className={`red`}>{props.players[1]}</span>
-                                <span className={`score`}>{props.scores[1] + ` - ` + props.scores[2]}</span>
-                                <span className={`blue`}>{props.players[2]}</span>
-                            </div>
                             <p className={`message`}>
-                                {props.players[props.gameEnd]} won the game!<br/> Would you like a re-match?
+                                <span style={{color: TeamMappings[props.gameEnd]}}>Team {TeamMappings[props.gameEnd]}</span> won the game!<br/> Would you like a re-match?
                             </p>
                             <button onClick={() => props.reset()} className={`restart`}>Restart</button>
                         </div>
                 }
-                
+
             </div>
         </div>
     )

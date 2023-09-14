@@ -1,140 +1,162 @@
 .jg-main {
-    height: 100vh;
-    background: #2c3e50;
-    color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
+  height: 100vh;
+  background: #2c3e50;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.jg-main .jg-wrapper-div {
+  width: 80vw;
+  height: 80vh;
+  border-radius: 25px;
+  padding: 25px;
+  background-color: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.jg-main .jg-wrapper-div .second-player-name-div {
+  width: 100%;
+  font-size: larger;
+  font-weight: bolder;
+  text-align: center;
+}
+.jg-main .jg-wrapper-div .second-player-name-div input {
+  width: 50%;
+  height: 40px;
+  border-radius: 10px;
+  border: 1px solid black;
+  margin-top: 20px;
+  text-align: center;
+  font-weight: bolder;
+  font-size: large;
+}
+.jg-main .jg-wrapper-div .second-player-name-div button {
+  width: 50%;
+  height: 40px;
+  border-radius: 10px;
+  margin-top: 10px;
+  text-align: center;
+  background: #27ae60;
+  border: 1px solid #2ecc71;
+  color: white;
+  font-weight: bolder;
+  font-size: large;
+}
+.jg-main .jg-wrapper-div .share-ui-content {
+  font-size: x-large;
+  font-weight: bold;
+  color: white;
+  margin-bottom: 20px;
+}
+.jg-main .jg-wrapper-div .share-ui-content .join-game-link {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border-radius: 25px;
+  background-color: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: large;
+  padding: 20px;
+}
+.jg-main .jg-wrapper-div .share-ui-content .join-game-link span {
+  max-width: 80%;
+}
+.jg-main .jg-wrapper-div .share-ui-content .join-game-link img {
+  filter: invert(1);
+}
+.jg-main .jg-wrapper-div .share-ui-content .teams {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.jg-main .jg-wrapper-div .share-ui-content .player {
+  flex: 1;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border-radius: 25px;
+  background-color: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  cursor: pointer;
+}
+.jg-main .jg-wrapper-div .share-ui-content .player .header {
+  display: flex;
+  width: 100%;
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: center;
+  border-top-left-radius: 25px;
+  border-top-right-radius: 25px;
+  padding: 10px;
+}
+.jg-main .jg-wrapper-div .share-ui-content .player .team-contents {
+  padding: 10px;
+  font-size: medium;
+  border-bottom-left-radius: 25px;
+  border-bottom-right-radius: 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.jg-main .jg-wrapper-div .share-ui-content .player .team-contents span {
+  margin-bottom: 8px;
+}
+.jg-main .jg-wrapper-div .share-ui-content .player .team-contents .no-player {
+  color: lightgrey;
+  font-size: small;
+  padding: 10px;
+}
+.jg-main .jg-wrapper-div .share-ui-content .message {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+}
+.jg-main .jg-wrapper-div .share-ui-content .start-game-button {
+  appearance: none;
+  background-color: #2ea44f;
+  border: 1px solid rgba(27, 31, 35, 0.15);
+  border-radius: 6px;
+  box-shadow: rgba(27, 31, 35, 0.1) 0 1px 0;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  font-size: x-large;
+  font-weight: 600;
+  padding: 6px 16px;
+  position: relative;
+  text-align: center;
+}
+.jg-main .jg-wrapper-div .share-ui-content .start-game-button:focus:not(:focus-visible):not(.focus-visible) {
+  box-shadow: none;
+  outline: none;
+}
+.jg-main .jg-wrapper-div .share-ui-content .start-game-button:hover {
+  background-color: #2c974b;
+}
+.jg-main .jg-wrapper-div .share-ui-content .start-game-button:focus {
+  box-shadow: rgba(46, 164, 79, 0.4) 0 0 0 3px;
+  outline: none;
+}
+.jg-main .jg-wrapper-div .share-ui-content .start-game-button:disabled {
+  background-color: #94d3a2;
+  border-color: rgba(27, 31, 35, 0.1);
+  color: rgba(255, 255, 255, 0.8);
+  cursor: default;
+}
+.jg-main .jg-wrapper-div .share-ui-content .start-game-button:active {
+  background-color: #298e46;
+  box-shadow: rgba(20, 70, 32, 0.2) 0 1px 0 inset;
 }
 
-.jg-wrapper-div {
-    width: 80vw;
-    height: 80vh;
-    border-radius: 25px;
-    padding: 25px;
-    background-color: rgba(255, 255, 255, .15);
-    backdrop-filter: blur(10px);
-}
-
-.jg-wrapper-div .second-player-name-div {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    height: 100%;
-}
-
-.jg-link-div {
-    font-size: x-large;
-    font-weight: bold;
-    color: white;
-    margin-bottom: 20px;
-}
-
-.jg-link {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px;
-    border: 2px solid black;
-    border-radius: 12px;
-    margin-top: 10px;
-    font-size: medium;
-    font-weight: normal;
-    box-shadow: 0 0 5px gray;
-    color: white;
-}
-
-.jg-link span {
-    max-width: 80%;
-    overflow: scroll;
-}
-
-.jg-link img {
-    filter: invert(1);
-}
-
-.players-div {
-    width: 80vw;
-    display: flex;
-    gap: 25px;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    height: 65%;
-}
-
-.players-div .player {
-    flex: 1;
-    background: red;
-    box-sizing: border-box;
-    padding: 50px 25px;
-    border-radius: 12px;
-    text-align: center;
-    font-size: 24px;
-}
-
-.players-div .player.blue {
-    background: blue;
-}
-
-.start-game-btn {
-    width: 80vw;
-    box-sizing: border-box;
-    background: #27ae60;
-    border: 1px solid #2ecc71;
-    font-weight: bold;
-    font-size: larger;
-    border-radius: 12px;
-    padding: 20px;
-    color: white;
-}
-
-.start-game-btn:disabled {
-    background: gray;
-    border: 1px solid darkgray;
-}
-
-.second-player-name-div {
-    width: 100%;
-    font-size: larger;
-    font-weight: bolder;
-    text-align: center;
-}
-
-.second-player-name-div > input {
-    width: 50%;
-    height: 40px;
-    border-radius: 10px;
-    border: 1px solid black;
-    margin-top: 20px;
-    text-align: center;
-    font-weight: bolder;
-    font-size: large;
-}
-
-.second-player-name-div > button {
-    width: 50%;
-    height: 40px;
-    border-radius: 10px;
-    margin-top: 10px;
-    text-align: center;
-    background: #27ae60;
-    border: 1px solid #2ecc71;
-    color: white;
-    font-weight: bolder;
-    font-size: large;
-}
-
-
-@media screen and (max-width: 440px) {
-    .players-div .player {
-        font-size: 16px;
-    }
-
-    .second-player-name-div button,
-    .second-player-name-div input {
-        width: 100%;
-    }
-}
+/*# sourceMappingURL=joinGame.css.map */

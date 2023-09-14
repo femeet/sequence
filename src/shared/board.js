@@ -38,49 +38,49 @@ const Board = [
             number: "A",
             suit: "club",
             used: false,
-            team: 0
+            team: -1
         },
         {
             "suit": "club",
             used: false,
-            "team": 0,
+            team: -1,
             image: KingClub
         },
         {
             suit: "club",
             used: false,
-            team: 0,
+            team: -1,
             image: QueenClub
         },
         {
             number: "10",
             suit: "club",
             used: false,
-            team: 0
+            team: -1
         },
         {
             number: "9",
             suit: "club",
             used: false,
-            team: 0
+            team: -1
         },
         {
             number: "8",
             suit: "club",
             used: false,
-            team: 0
+            team: -1
         },
         {
             number: "7",
             suit: "club",
             used: false,
-            team: 0
+            team: -1
         },
         {
             number: "6",
             suit: "club",
             used: false,
-            team: 0
+            team: -1
         },
         {
             corner: true,
@@ -92,185 +92,185 @@ const Board = [
             number: "A",
             suit: "diamond",
             used: false,
-            team: 0
+            team: -1
         },
         {
             number: "7",
             suit: "spade",
             used: false,
-            team: 0
+            team: -1
         },
         {
             number: "8",
             suit: "spade",
             used: false,
-            team: 0
+            team: -1
         },
         {
             number: "9",
             suit: "spade",
             used: false,
-            team: 0
+            team: -1
         },
         {
             number: "10",
             suit: "spade",
             used: false,
-            team: 0
+            team: -1
         },
         {
             suit: spade,
             used: false,
-            team: 0,
+            team: -1,
             image: QueenSpade
         },
         {
             suit: spade,
             used: false,
-            team: 0,
+            team: -1,
             image: KingSpade
         },
         {
             number: "A",
             suit: "spade",
             used: false,
-            team: 0
+            team: -1
         },
         {
             number: "5",
             suit: "club",
             used: false,
-            team: 0
+            team: -1
         },
         {
             number: "2",
             suit: "spade",
             used: false,
-            team: 0
+            team: -1
         }
     ],
     [
         {
             "suit": "diamond",
             used: false,
-            "team": 0,
+            team: -1,
             image: KingDiamond
         },
         {
             number: "6",
             suit: "spade",
             used: false,
-            team: 0
+            team: -1
         },
         {
             "number": 10,
             "suit": "club",
             used: false,
-            "team": 0,
+            team: -1,
         },
         {
             "number": 9,
             "suit": "club",
             used: false,
-            "team": 0,
+            team: -1,
         },
         {
             number: 8,
             suit: "club",
             used: false,
-            team: 0
+            team: -1
         },
         {
             number: 7,
             suit: "club",
             used: false,
-            team: 0
+            team: -1
         },
         {
             number: 6,
             suit: "club",
             used: false,
-            team: 0
+            team: -1
         },
         {
             number: 2,
             suit: "diamond",
             used: false,
-            team: 0
+            team: -1
         },
         {
             number: 4,
             suit: "club",
             used: false,
-            team: 0
+            team: -1
         },
         {
             number: 3,
             suit: "spade",
             used: false,
-            team: 0
+            team: -1
         }
     ],
     [
         {
             "suit": "diamond",
             used: false,
-            "team": 0,
+            team: -1,
             image: QueenDiamond
         },
         {
             number: 5,
             suit: "spade",
             used: false,
-            team: 0
+            team: -1
         },
         {
             "suit": "club",
             used: false,
-            "team": 0,
+            team: -1,
             image: QueenClub
         },
         {
             number: 8,
             suit: "heart",
             used: false,
-            team: 0
+            team: -1
         },
         {
             number: 7,
             suit: "heart",
             used: false,
-            team: 0
+            team: -1
         },
         {
             number: 6,
             suit: "heart",
             used: false,
-            team: 0
+            team: -1
         },
         {
             number: 5,
             suit: "club",
             used: false,
-            team: 0
+            team: -1
         },
         {
             number: 3,
             suit: "diamond",
             used: false,
-            team: 0
+            team: -1
         },
         {
             number: 3,
             suit: "club",
             used: false,
-            team: 0
+            team: -1
         },
         {
             number: 4,
             suit: "spade",
             used: false,
-            team: 0
+            team: -1
         }
     ],
     [
@@ -278,61 +278,61 @@ const Board = [
             number: 10,
             suit: diamond,
             used: false,
-            team: 0
+            team: -1
         },
         {
             number: 4,
             suit: spade,
             used: false,
-            team: 0
+            team: -1
         },
         {
             "suit": club,
             used: false,
-            "team": 0,
+            team: -1,
             image: KingClub
         },
         {
             number: 9,
             suit: heart,
             used: false,
-            team: 0
+            team: -1
         },
         {
             number: 2,
             suit: heart,
             used: false,
-            team: 0
+            team: -1
         },
         {
             number: 5,
             suit: heart,
             used: false,
-            team: 0
+            team: -1
         },
         {
             number: 4,
             suit: club,
             used: false,
-            team: 0
+            team: -1
         },
         {
             number: 4,
             suit: diamond,
             used: false,
-            team: 0
+            team: -1
         },
         {
             number: 2,
             suit: "club",
             used: false,
-            team: 0
+            team: -1
         },
         {
             number: 5,
             suit: spade,
             used: false,
-            team: 0
+            team: -1
         }
     ],
     [
@@ -340,61 +340,61 @@ const Board = [
             number: 9,
             suit: diamond,
             used: false,
-            team: 0
+            team: -1
         },
         {
             number: 3,
             suit: spade,
             used: false,
-            team: 0
+            team: -1
         },
         {
             number: "A",
             suit: club,
             used: false,
-            team: 0
+            team: -1
         },
         {
             number: 10,
             suit: heart,
             used: false,
-            team: 0
+            team: -1
         },
         {
             number: 3,
             suit: heart,
             used: false,
-            team: 0
+            team: -1
         },
         {
             number: 4,
             suit: heart,
             used: false,
-            team: 0
+            team: -1
         },
         {
             number: 3,
             suit: "club",
             used: false,
-            team: 0
+            team: -1
         },
         {
             number: 5,
             suit: diamond,
             used: false,
-            team: 0
+            team: -1
         },
         {
             number: "A",
             suit: heart,
             used: false,
-            team: 0
+            team: -1
         },
         {
             number: 6,
             suit: spade,
             used: false,
-            team: 0
+            team: -1
         }
     ],
     [
@@ -402,61 +402,61 @@ const Board = [
             number: 8,
             suit: diamond,
             used: false,
-            "team": 0,
+            team: -1,
         },
         {
             number: 2,
             suit: spade,
             used: false,
-            team: 0
+            team: -1
         },
         {
             "number": "A",
             "suit": diamond,
             used: false,
-            "team": 0,
+            team: -1,
         },
         {
             suit: heart,
             used: false,
-            team: 0,
+            team: -1,
             image: QueenHeart
         },
         {
             suit: heart,
             used: false,
-            team: 0,
+            team: -1,
             image: KingHeart
         },
         {
             number: "A",
             suit: heart,
             used: false,
-            team: 0
+            team: -1
         },
         {
             number: 2,
             suit: club,
             used: false,
-            team: 0
+            team: -1
         },
         {
             number: 6,
             suit: diamond,
             used: false,
-            team: 0
+            team: -1
         },
         {
             suit: heart,
             used: false,
-            team: 0,
+            team: -1,
             image: KingHeart
         },
         {
             number: 7,
             suit: spade,
             used: false,
-            team: 0,
+            team: -1,
         }
     ],
     [
@@ -464,61 +464,61 @@ const Board = [
             number: 7,
             suit: diamond,
             used: false,
-            team: 0
+            team: -1
         },
         {
             number: 2,
             suit: heart,
             used: false,
-            team: 0
+            team: -1
         },
         {
             "suit": "diamond",
             used: false,
-            "team": 0,
+            team: -1,
             image: KingDiamond
         },
         {
             "suit": diamond,
             used: false,
-            "team": 0,
+            team: -1,
             image: QueenDiamond
         },
         {
             number: 10,
             suit: diamond,
             used: false,
-            team: 0
+            team: -1
         },
         {
             number: 9,
             suit: diamond,
             used: false,
-            team: 0
+            team: -1
         },
         {
             number: 8,
             suit: diamond,
             used: false,
-            team: 0
+            team: -1
         },
         {
             number: 7,
             suit: diamond,
             used: false,
-            team: 0
+            team: -1
         },
         {
             "suit": heart,
             used: false,
-            "team": 0,
+            team: -1,
             image: QueenHeart
         },
         {
             number: 8,
             suit: spade,
             used: false,
-            team: 0,
+            team: -1,
         }
     ],
     [
@@ -526,61 +526,61 @@ const Board = [
             number: "6",
             suit: "diamond",
             used: false,
-            team: 0,
+            team: -1,
         },
         {
             number: "3",
             suit: "heart",
             used: false,
-            team: 0,
+            team: -1,
         },
         {
             number: "4",
             suit: "heart",
             used: false,
-            team: 0,
+            team: -1,
         },
         {
             number: "5",
             suit: "heart",
             used: false,
-            team: 0,
+            team: -1,
         },
         {
             number: "6",
             suit: "heart",
             used: false,
-            team: 0,
+            team: -1,
         },
         {
             number: "7",
             suit: "heart",
             used: false,
-            team: 0,
+            team: -1,
         },
         {
             number: "8",
             suit: "heart",
             used: false,
-            team: 0,
+            team: -1,
         },
         {
             number: "9",
             suit: "heart",
             used: false,
-            team: 0,
+            team: -1,
         },
         {
             number: "10",
             suit: "heart",
             used: false,
-            team: 0,
+            team: -1,
         },
         {
             number: "9",
             suit: spade,
             used: false,
-            team: 0
+            team: -1
         }
     ],
     [
@@ -592,49 +592,49 @@ const Board = [
             number: "5",
             suit: "diamond",
             used: false,
-            team: 0
+            team: -1
         },
         {
             number: "4",
             suit: "diamond",
             used: false,
-            team: 0
+            team: -1
         },
         {
             number: "3",
             suit: "diamond",
             used: false,
-            team: 0
+            team: -1
         },
         {
             number: "2",
             suit: "diamond",
             used: false,
-            team: 0
+            team: -1
         },
         {
             number: "A",
             suit: "spade",
             used: false,
-            team: 0
+            team: -1
         },
         {
             suit: spade,
             used: false,
-            team: 0,
+            team: -1,
             image: KingSpade
         },
         {
             suit: spade,
             used: false,
-            team: 0,
+            team: -1,
             image: QueenSpade
         },
         {
             number: "10",
             suit: "spade",
             used: false,
-            team: 0,
+            team: -1,
         },
         {
             corner: true,
