@@ -10,6 +10,9 @@ import checkForScore from '../../gameLogic';
 import Modal from "./modal/modal";
 import resetGame from "../../utils/resetGame";
 
+import {useAudio} from "../audio/useAudio";
+import click from "../../assets/click.wav"
+
 const Game = () => {
     
     const {id} = useParams();
@@ -20,6 +23,7 @@ const Game = () => {
     const [showModal, setShowModal] = useState(false);
     const [modal, setModal] = useState(null);
     const [gameEnd, setGameEnd] = useState(-1);
+    const toggle = useAudio(click);
     
     const canPlay = (row, col) => {
         
@@ -234,7 +238,9 @@ const Game = () => {
     
         let card = canPlay(row, col);
         if (!card) return;
-        
+
+        toggle();
+
         await executePlay(row, col, card);
     }
     
@@ -256,6 +262,7 @@ const Game = () => {
         
         const unsubscribe = onSnapshot(doc(db, "games", id), (doc) => {
             initialCheck(doc.data()).then();
+            toggle();
         });
         return () => unsubscribe()
     }, [])
