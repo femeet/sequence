@@ -122,6 +122,12 @@
 
           span {
             margin-bottom: 8px;
+
+            @media (max-width: 440px) {
+              font-size: 12px;
+              line-height: 16px;
+              overflow: hidden;
+            }
           }
 
           .no-player {

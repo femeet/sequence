@@ -234,7 +234,7 @@ const JoinGame = () => {
                                 })
                             }
                             {
-                                (data == null || data["teams"][0].length === 0) && <span className="no-player">No Players Yet</span>
+                                (data == null || data["teams"][0].length === 0) && <span className="no-player">Empty</span>
                             }
                         </div>
                     </div>
@@ -247,7 +247,7 @@ const JoinGame = () => {
                                 })
                             }
                             {
-                                (data == null || data["teams"][1].length === 0) && <span className="no-player">No Players Yet</span>
+                                (data == null || data["teams"][1].length === 0) && <span className="no-player">Empty</span>
                             }
                         </div>
                     </div>
@@ -260,7 +260,7 @@ const JoinGame = () => {
                                 })
                             }
                             {
-                                (data == null || data["teams"][2].length === 0) && <span className="no-player">No Players Yet</span>
+                                (data == null || data["teams"][2].length === 0) && <span className="no-player">Empty</span>
                             }
                         </div>
                     </div>
