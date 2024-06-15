@@ -9,6 +9,7 @@ import {Board} from "../../shared/board";
 import checkForScore from '../../gameLogic';
 import Modal from "./modal/modal";
 import resetGame from "../../utils/resetGame";
+import {getAnalytics, logEvent} from "firebase/analytics";
 
 const Game = () => {
     
@@ -20,6 +21,7 @@ const Game = () => {
     const [showModal, setShowModal] = useState(false);
     const [modal, setModal] = useState(null);
     const [gameEnd, setGameEnd] = useState(-1);
+    const analytics = getAnalytics();
     
     const canPlay = (row, col) => {
         
@@ -161,6 +163,7 @@ const Game = () => {
         await resetGame(id);
         setBoard(Board);
         setGameEnd(-1);
+        logEvent(analytics, `game_restart`);
     }
     
     /**

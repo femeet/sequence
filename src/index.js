@@ -5,6 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth"
 import "firebase/compat/firestore"
@@ -23,12 +24,14 @@ const firebaseConfig = {
     projectId: "ssui-final-project",
     storageBucket: "ssui-final-project.appspot.com",
     messagingSenderId: "604660582335",
-    appId: "1:604660582335:web:8d0052258ceeedd538830a"
+    appId: "1:604660582335:web:8d0052258ceeedd538830a",
+    measurementId: "G-G5SSPKY9KB"
 };
 
 // Initialize Firebase
 const app = firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
+const analytics = getAnalytics(app);
 
 root.render(
     <App />

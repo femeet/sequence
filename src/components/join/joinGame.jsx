@@ -6,11 +6,14 @@ import db from "../../index";
 import copy from '../../assets/copy.png';
 import toast from "react-hot-toast";
 import background from "../../assets/images/home_background.png";
+import { getAnalytics, logEvent } from "firebase/analytics";
 
 // TODO: Cap total Number of players to 12 -> Display a message "Lobby Full"
 const JoinGame = () => {
 
     const {id} = useParams();
+
+    const analytics = getAnalytics();
 
     const [data, setData] = useState(null);
 
@@ -98,6 +101,7 @@ const JoinGame = () => {
         // Done: Update Firebase
         await setDoc(doc(db, "games", id), tempData);
         // alert("Firestore updated. Game Started.");
+        logEvent(analytics, `game_start`, {players: n});
 
         // Done: Navigate to board page
         navigate(`/game/${id}`)
@@ -143,8 +147,6 @@ const JoinGame = () => {
 
     async function initialCheck(newData) {
 
-        // TODO: If status is 1 and user ID is either 1 or 2, navigate to game screen.
-
         await setData(newData);
 
         const gameID = id;
@@ -186,7 +188,7 @@ const JoinGame = () => {
         // TODO: Check if ID from use params is Legit.
 
         const unsubscribe = onSnapshot(doc(db, "games", id), (doc) => {
-            // TODO: Only proceed with checking if the status is 0.
+            // Only proceed with checking if the status is 0.
             initialCheck(doc.data());
         });
 
