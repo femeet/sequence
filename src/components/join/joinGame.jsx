@@ -101,7 +101,7 @@ const JoinGame = () => {
         // Done: Update Firebase
         await setDoc(doc(db, "games", id), tempData);
         // alert("Firestore updated. Game Started.");
-        logEvent(analytics, `game_start`, {players: n});
+        logEvent(analytics, `game_start`, {players: Object.keys(tempData['players']).length});
 
         // Done: Navigate to board page
         navigate(`/game/${id}`)
